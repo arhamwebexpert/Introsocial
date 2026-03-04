@@ -15,6 +15,7 @@ export default function EventsPage() {
     const [events, setEvents] = useState([]);
     const [fetching, setFetching] = useState(true);
     const [showCreate, setShowCreate] = useState(false);
+    const [summaries, setSummaries] = useState({});
 
     useEffect(() => {
         if (!loading && !user) router.push('/login');
@@ -34,22 +35,6 @@ export default function EventsPage() {
         finally { setFetching(false); }
     };
 
-    const handleRSVP = async (eventId, status) => {
-        try {
-            const res = await fetch(`/api/events/${eventId}/rsvp`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ status }),
-            });
-            const data = await res.json();
-            if (res.ok) {
-                setEvents((prev) =>
-                    prev.map((e) => e._id === eventId ? { ...e, rsvps: data.rsvps } : e)
-                );
-            }
-        } catch { }
-    };
-
     const formatDateTime = (dt) => {
         if (!dt) return null;
         return new Date(dt).toLocaleString('en-US', {
@@ -58,14 +43,32 @@ export default function EventsPage() {
         });
     };
 
-    const getRSVPCounts = (rsvps) => ({
-        going: rsvps?.filter((r) => r.status === 'going').length || 0,
-        maybe: rsvps?.filter((r) => r.status === 'maybe').length || 0,
-        not_going: rsvps?.filter((r) => r.status === 'not_going').length || 0,
-    });
+    const handleJoinChat = (eventId) => {
+        router.push(`/groups/${groupId}/chat`);
+    };
 
-    const getUserRSVP = (rsvps) =>
-        rsvps?.find((r) => r.userId?._id === user?.userId || r.userId?.toString() === user?.userId)?.status;
+    const handleSummarize = async (eventId) => {
+        if (summaries[eventId]) {
+            setSummaries((prev) => ({ ...prev, [eventId]: null }));
+            return;
+        }
+        
+        // Mock summary - in production, this would call an API
+        const mockSummary = "This event discussion includes planning details, RSVP confirmations, and location updates. Members are excited and coordinating logistics.";
+        setSummaries((prev) => ({ ...prev, [eventId]: mockSummary }));
+    };
+
+    const handleEndEvent = async (eventId) => {
+        if (!confirm('Are you sure you want to end this event?')) return;
+        
+        try {
+            // In production, this would call an API to delete/end the event
+            setEvents((prev) => prev.filter((e) => e._id !== eventId));
+            alert('Event ended successfully');
+        } catch (error) {
+            alert('Failed to end event');
+        }
+    };
 
     if (loading || fetching) {
         return (
@@ -86,7 +89,7 @@ export default function EventsPage() {
         <div style={{ maxWidth: '700px', margin: '0 auto' }}>
 
             {/* Header */}
-            <div className="fb-card" style={{ marginBottom: '0.75rem', padding: '0.875rem 1rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <div className="fb-card" style={{ marginBottom: '0.75rem', padding: '0.875rem 1rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.75rem' }}>
                 <div>
                     <Link href={`/groups/${groupId}/chat`} style={{ color: 'var(--fb-text-secondary)', textDecoration: 'none', fontSize: '0.875rem', fontWeight: '500', transition: 'color 0.15s' }}
                         onMouseEnter={e => e.currentTarget.style.color = 'var(--fb-text)'}
@@ -97,13 +100,28 @@ export default function EventsPage() {
                     <h1 style={{ margin: '0.25rem 0 0.125rem', fontSize: '1.25rem', fontWeight: '800', color: 'var(--fb-text)' }}>Events</h1>
                     <p style={{ margin: 0, fontSize: '0.875rem', color: 'var(--fb-text-muted)' }}>From threads or created directly</p>
                 </div>
-                <button
-                    onClick={() => setShowCreate(true)}
-                    className="btn-primary"
-                    style={{ width: 'auto', padding: '0.5rem 1rem', fontSize: '0.9375rem' }}
-                >
-                    + New Event
-                </button>
+                <div style={{ display: 'flex', gap: '0.5rem' }}>
+                    <Link
+                        href="/moments"
+                        className="btn-secondary"
+                        style={{ 
+                            width: 'auto', 
+                            padding: '0.5rem 1rem', 
+                            fontSize: '0.9375rem',
+                            textDecoration: 'none',
+                            display: 'inline-block',
+                        }}
+                    >
+                        📸 Moments
+                    </Link>
+                    <button
+                        onClick={() => setShowCreate(true)}
+                        className="btn-primary"
+                        style={{ width: 'auto', padding: '0.5rem 1rem', fontSize: '0.9375rem' }}
+                    >
+                        + New Event
+                    </button>
+                </div>
             </div>
 
             {/* Events list */}
@@ -119,9 +137,6 @@ export default function EventsPage() {
             ) : (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                     {events.map((event) => {
-                        const counts = getRSVPCounts(event.rsvps);
-                        const myRSVP = getUserRSVP(event.rsvps);
-
                         return (
                             <div key={event._id} className="fb-card" style={{ padding: '1rem' }}>
                                 {/* Top row */}
@@ -162,41 +177,86 @@ export default function EventsPage() {
                                     <span>👤 {event.createdBy?.name}</span>
                                 </div>
 
-                                {/* RSVP counts */}
-                                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', fontSize: '0.8125rem', marginBottom: '0.875rem' }}>
-                                    <span style={{ color: 'var(--fb-green)', fontWeight: '600' }}>✓ {counts.going} going</span>
-                                    <span style={{ color: '#ffc947', fontWeight: '600' }}>? {counts.maybe} maybe</span>
-                                    <span style={{ color: 'var(--fb-red)', fontWeight: '600' }}>✗ {counts.not_going} not going</span>
+                                {/* Join Chat & Summarize buttons */}
+                                <div style={{ display: 'flex', gap: '0.5rem', borderTop: '1px solid var(--fb-border)', paddingTop: '0.75rem' }}>
+                                    <button
+                                        onClick={() => handleJoinChat(event._id)}
+                                        className="fb-action-btn"
+                                        style={{
+                                            flex: 1,
+                                            fontSize: '0.875rem',
+                                            fontWeight: '600',
+                                            padding: '0.5rem 1rem',
+                                            background: 'var(--fb-blue)',
+                                            color: '#fff',
+                                            border: 'none',
+                                            borderRadius: '8px',
+                                            cursor: 'pointer',
+                                            transition: 'background 0.15s',
+                                        }}
+                                        onMouseEnter={e => e.currentTarget.style.background = 'var(--fb-blue-hover)'}
+                                        onMouseLeave={e => e.currentTarget.style.background = 'var(--fb-blue)'}
+                                    >
+                                        💬 Join Chat
+                                    </button>
+                                    <button
+                                        onClick={() => handleSummarize(event._id)}
+                                        className="fb-action-btn"
+                                        style={{
+                                            flex: 1,
+                                            fontSize: '0.875rem',
+                                            fontWeight: '600',
+                                            padding: '0.5rem 1rem',
+                                            background: summaries[event._id] ? 'var(--fb-surface3)' : 'var(--fb-surface2)',
+                                            color: 'var(--fb-text-secondary)',
+                                            border: '1px solid var(--fb-border)',
+                                            borderRadius: '8px',
+                                            cursor: 'pointer',
+                                            transition: 'background 0.15s, color 0.15s',
+                                        }}
+                                        onMouseEnter={e => { e.currentTarget.style.background = 'var(--fb-surface3)'; e.currentTarget.style.color = 'var(--fb-text)'; }}
+                                        onMouseLeave={e => { e.currentTarget.style.background = summaries[event._id] ? 'var(--fb-surface3)' : 'var(--fb-surface2)'; e.currentTarget.style.color = 'var(--fb-text-secondary)'; }}
+                                    >
+                                        📝 {summaries[event._id] ? 'Hide Summary' : 'Summarize'}
+                                    </button>
+                                    <button
+                                        onClick={() => handleEndEvent(event._id)}
+                                        className="fb-action-btn"
+                                        style={{
+                                            fontSize: '0.875rem',
+                                            fontWeight: '600',
+                                            padding: '0.5rem 1rem',
+                                            background: 'var(--fb-surface2)',
+                                            color: 'var(--fb-red)',
+                                            border: '1px solid var(--fb-border)',
+                                            borderRadius: '8px',
+                                            cursor: 'pointer',
+                                            transition: 'background 0.15s, color 0.15s',
+                                        }}
+                                        onMouseEnter={e => { e.currentTarget.style.background = 'var(--fb-red)'; e.currentTarget.style.color = '#fff'; }}
+                                        onMouseLeave={e => { e.currentTarget.style.background = 'var(--fb-surface2)'; e.currentTarget.style.color = 'var(--fb-red)'; }}
+                                    >
+                                        🔚 End Event
+                                    </button>
                                 </div>
 
-                                {/* RSVP buttons */}
-                                <div style={{ display: 'flex', gap: '0.5rem', borderTop: '1px solid var(--fb-border)', paddingTop: '0.75rem' }}>
-                                    {[
-                                        { status: 'going', label: '✓ Going', activeColor: 'var(--fb-green)', activeBg: 'rgba(66,183,42,0.15)' },
-                                        { status: 'maybe', label: '? Maybe', activeColor: '#ffc947', activeBg: 'rgba(255,201,71,0.12)' },
-                                        { status: 'not_going', label: "✗ Can't go", activeColor: 'var(--fb-red)', activeBg: 'rgba(240,40,73,0.12)' },
-                                    ].map(({ status, label, activeColor, activeBg }) => {
-                                        const isActive = myRSVP === status;
-                                        return (
-                                            <button
-                                                key={status}
-                                                onClick={() => handleRSVP(event._id, status)}
-                                                className="fb-action-btn"
-                                                style={{
-                                                    color: isActive ? activeColor : 'var(--fb-text-secondary)',
-                                                    background: isActive ? activeBg : 'transparent',
-                                                    fontWeight: isActive ? '700' : '600',
-                                                    fontSize: '0.875rem',
-                                                    border: isActive ? `1px solid ${activeColor}` : '1px solid var(--fb-border)',
-                                                    borderRadius: '8px',
-                                                    flex: 1,
-                                                }}
-                                            >
-                                                {label}
-                                            </button>
-                                        );
-                                    })}
-                                </div>
+                                {/* Summary display */}
+                                {summaries[event._id] && (
+                                    <div style={{
+                                        marginTop: '0.75rem',
+                                        padding: '0.875rem',
+                                        background: 'var(--fb-surface2)',
+                                        borderRadius: '8px',
+                                        borderLeft: '3px solid var(--fb-blue)',
+                                    }}>
+                                        <p style={{ margin: '0 0 0.5rem', fontSize: '0.75rem', fontWeight: '700', color: 'var(--fb-text-secondary)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                                            Summary
+                                        </p>
+                                        <p style={{ margin: 0, fontSize: '0.875rem', color: 'var(--fb-text)', lineHeight: '1.5' }}>
+                                            {summaries[event._id]}
+                                        </p>
+                                    </div>
+                                )}
                             </div>
                         );
                     })}

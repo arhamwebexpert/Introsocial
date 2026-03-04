@@ -459,6 +459,7 @@ function EventsPage() {
     const [events, setEvents] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])([]);
     const [fetching, setFetching] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(true);
     const [showCreate, setShowCreate] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [summaries, setSummaries] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])({});
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         if (!loading && !user) router.push('/login');
     }, [
@@ -481,26 +482,6 @@ function EventsPage() {
             setFetching(false);
         }
     };
-    const handleRSVP = async (eventId, status)=>{
-        try {
-            const res = await fetch(`/api/events/${eventId}/rsvp`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    status
-                })
-            });
-            const data = await res.json();
-            if (res.ok) {
-                setEvents((prev)=>prev.map((e)=>e._id === eventId ? {
-                            ...e,
-                            rsvps: data.rsvps
-                        } : e));
-            }
-        } catch  {}
-    };
     const formatDateTime = (dt)=>{
         if (!dt) return null;
         return new Date(dt).toLocaleString('en-US', {
@@ -511,12 +492,34 @@ function EventsPage() {
             minute: '2-digit'
         });
     };
-    const getRSVPCounts = (rsvps)=>({
-            going: rsvps?.filter((r)=>r.status === 'going').length || 0,
-            maybe: rsvps?.filter((r)=>r.status === 'maybe').length || 0,
-            not_going: rsvps?.filter((r)=>r.status === 'not_going').length || 0
-        });
-    const getUserRSVP = (rsvps)=>rsvps?.find((r)=>r.userId?._id === user?.userId || r.userId?.toString() === user?.userId)?.status;
+    const handleJoinChat = (eventId)=>{
+        router.push(`/groups/${groupId}/chat`);
+    };
+    const handleSummarize = async (eventId)=>{
+        if (summaries[eventId]) {
+            setSummaries((prev)=>({
+                    ...prev,
+                    [eventId]: null
+                }));
+            return;
+        }
+        // Mock summary - in production, this would call an API
+        const mockSummary = "This event discussion includes planning details, RSVP confirmations, and location updates. Members are excited and coordinating logistics.";
+        setSummaries((prev)=>({
+                ...prev,
+                [eventId]: mockSummary
+            }));
+    };
+    const handleEndEvent = async (eventId)=>{
+        if (!confirm('Are you sure you want to end this event?')) return;
+        try {
+            // In production, this would call an API to delete/end the event
+            setEvents((prev)=>prev.filter((e)=>e._id !== eventId));
+            alert('Event ended successfully');
+        } catch (error) {
+            alert('Failed to end event');
+        }
+    };
     if (loading || fetching) {
         return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
             style: {
@@ -537,20 +540,20 @@ function EventsPage() {
                     }
                 }, void 0, false, {
                     fileName: "[project]/app/groups/[id]/events/page.jsx",
-                    lineNumber: 73,
+                    lineNumber: 76,
                     columnNumber: 17
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("style", {
                     children: `@keyframes spin { to { transform: rotate(360deg); } }`
                 }, void 0, false, {
                     fileName: "[project]/app/groups/[id]/events/page.jsx",
-                    lineNumber: 80,
+                    lineNumber: 83,
                     columnNumber: 17
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/app/groups/[id]/events/page.jsx",
-            lineNumber: 72,
+            lineNumber: 75,
             columnNumber: 13
         }, this);
     }
@@ -586,7 +589,7 @@ function EventsPage() {
                                 children: "← Back to Chat"
                             }, void 0, false, {
                                 fileName: "[project]/app/groups/[id]/events/page.jsx",
-                                lineNumber: 91,
+                                lineNumber: 94,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
@@ -599,7 +602,7 @@ function EventsPage() {
                                 children: "Events"
                             }, void 0, false, {
                                 fileName: "[project]/app/groups/[id]/events/page.jsx",
-                                lineNumber: 97,
+                                lineNumber: 100,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -611,13 +614,13 @@ function EventsPage() {
                                 children: "From threads or created directly"
                             }, void 0, false, {
                                 fileName: "[project]/app/groups/[id]/events/page.jsx",
-                                lineNumber: 98,
+                                lineNumber: 101,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/groups/[id]/events/page.jsx",
-                        lineNumber: 90,
+                        lineNumber: 93,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -631,13 +634,13 @@ function EventsPage() {
                         children: "+ New Event"
                     }, void 0, false, {
                         fileName: "[project]/app/groups/[id]/events/page.jsx",
-                        lineNumber: 100,
+                        lineNumber: 103,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/groups/[id]/events/page.jsx",
-                lineNumber: 89,
+                lineNumber: 92,
                 columnNumber: 13
             }, this),
             events.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -655,7 +658,7 @@ function EventsPage() {
                         children: "📅"
                     }, void 0, false, {
                         fileName: "[project]/app/groups/[id]/events/page.jsx",
-                        lineNumber: 112,
+                        lineNumber: 115,
                         columnNumber: 21
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -668,7 +671,7 @@ function EventsPage() {
                         children: "No events yet"
                     }, void 0, false, {
                         fileName: "[project]/app/groups/[id]/events/page.jsx",
-                        lineNumber: 113,
+                        lineNumber: 116,
                         columnNumber: 21
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -679,7 +682,7 @@ function EventsPage() {
                         children: "Promote a chat thread to an event, or create one directly"
                     }, void 0, false, {
                         fileName: "[project]/app/groups/[id]/events/page.jsx",
-                        lineNumber: 114,
+                        lineNumber: 117,
                         columnNumber: 21
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -692,13 +695,13 @@ function EventsPage() {
                         children: "Create Event"
                     }, void 0, false, {
                         fileName: "[project]/app/groups/[id]/events/page.jsx",
-                        lineNumber: 115,
+                        lineNumber: 118,
                         columnNumber: 21
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/groups/[id]/events/page.jsx",
-                lineNumber: 111,
+                lineNumber: 114,
                 columnNumber: 17
             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 style: {
@@ -707,8 +710,6 @@ function EventsPage() {
                     gap: '0.75rem'
                 },
                 children: events.map((event)=>{
-                    const counts = getRSVPCounts(event.rsvps);
-                    const myRSVP = getUserRSVP(event.rsvps);
                     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "fb-card",
                         style: {
@@ -855,55 +856,92 @@ function EventsPage() {
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 style: {
                                     display: 'flex',
-                                    alignItems: 'center',
-                                    gap: '1rem',
-                                    fontSize: '0.8125rem',
-                                    marginBottom: '0.875rem'
+                                    gap: '0.5rem',
+                                    borderTop: '1px solid var(--fb-border)',
+                                    paddingTop: '0.75rem'
                                 },
                                 children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                        onClick: ()=>handleJoinChat(event._id),
+                                        className: "fb-action-btn",
                                         style: {
-                                            color: 'var(--fb-green)',
-                                            fontWeight: '600'
+                                            flex: 1,
+                                            fontSize: '0.875rem',
+                                            fontWeight: '600',
+                                            padding: '0.5rem 1rem',
+                                            background: 'var(--fb-blue)',
+                                            color: '#fff',
+                                            border: 'none',
+                                            borderRadius: '8px',
+                                            cursor: 'pointer',
+                                            transition: 'background 0.15s'
                                         },
-                                        children: [
-                                            "✓ ",
-                                            counts.going,
-                                            " going"
-                                        ]
-                                    }, void 0, true, {
+                                        onMouseEnter: (e)=>e.currentTarget.style.background = 'var(--fb-blue-hover)',
+                                        onMouseLeave: (e)=>e.currentTarget.style.background = 'var(--fb-blue)',
+                                        children: "💬 Join Chat"
+                                    }, void 0, false, {
                                         fileName: "[project]/app/groups/[id]/events/page.jsx",
                                         lineNumber: 167,
                                         columnNumber: 37
                                     }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                        onClick: ()=>handleSummarize(event._id),
+                                        className: "fb-action-btn",
                                         style: {
-                                            color: '#ffc947',
-                                            fontWeight: '600'
+                                            flex: 1,
+                                            fontSize: '0.875rem',
+                                            fontWeight: '600',
+                                            padding: '0.5rem 1rem',
+                                            background: summaries[event._id] ? 'var(--fb-surface3)' : 'var(--fb-surface2)',
+                                            color: 'var(--fb-text-secondary)',
+                                            border: '1px solid var(--fb-border)',
+                                            borderRadius: '8px',
+                                            cursor: 'pointer',
+                                            transition: 'background 0.15s, color 0.15s'
+                                        },
+                                        onMouseEnter: (e)=>{
+                                            e.currentTarget.style.background = 'var(--fb-surface3)';
+                                            e.currentTarget.style.color = 'var(--fb-text)';
+                                        },
+                                        onMouseLeave: (e)=>{
+                                            e.currentTarget.style.background = summaries[event._id] ? 'var(--fb-surface3)' : 'var(--fb-surface2)';
+                                            e.currentTarget.style.color = 'var(--fb-text-secondary)';
                                         },
                                         children: [
-                                            "? ",
-                                            counts.maybe,
-                                            " maybe"
+                                            "📝 ",
+                                            summaries[event._id] ? 'Hide Summary' : 'Summarize'
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/groups/[id]/events/page.jsx",
-                                        lineNumber: 168,
+                                        lineNumber: 187,
                                         columnNumber: 37
                                     }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                        onClick: ()=>handleEndEvent(event._id),
+                                        className: "fb-action-btn",
                                         style: {
+                                            fontSize: '0.875rem',
+                                            fontWeight: '600',
+                                            padding: '0.5rem 1rem',
+                                            background: 'var(--fb-surface2)',
                                             color: 'var(--fb-red)',
-                                            fontWeight: '600'
+                                            border: '1px solid var(--fb-border)',
+                                            borderRadius: '8px',
+                                            cursor: 'pointer',
+                                            transition: 'background 0.15s, color 0.15s'
                                         },
-                                        children: [
-                                            "✗ ",
-                                            counts.not_going,
-                                            " not going"
-                                        ]
-                                    }, void 0, true, {
+                                        onMouseEnter: (e)=>{
+                                            e.currentTarget.style.background = 'var(--fb-red)';
+                                            e.currentTarget.style.color = '#fff';
+                                        },
+                                        onMouseLeave: (e)=>{
+                                            e.currentTarget.style.background = 'var(--fb-surface2)';
+                                            e.currentTarget.style.color = 'var(--fb-red)';
+                                        },
+                                        children: "🔚 End Event"
+                                    }, void 0, false, {
                                         fileName: "[project]/app/groups/[id]/events/page.jsx",
-                                        lineNumber: 169,
+                                        lineNumber: 207,
                                         columnNumber: 37
                                     }, this)
                                 ]
@@ -912,57 +950,48 @@ function EventsPage() {
                                 lineNumber: 166,
                                 columnNumber: 33
                             }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            summaries[event._id] && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 style: {
-                                    display: 'flex',
-                                    gap: '0.5rem',
-                                    borderTop: '1px solid var(--fb-border)',
-                                    paddingTop: '0.75rem'
+                                    marginTop: '0.75rem',
+                                    padding: '0.875rem',
+                                    background: 'var(--fb-surface2)',
+                                    borderRadius: '8px',
+                                    borderLeft: '3px solid var(--fb-blue)'
                                 },
                                 children: [
-                                    {
-                                        status: 'going',
-                                        label: '✓ Going',
-                                        activeColor: 'var(--fb-green)',
-                                        activeBg: 'rgba(66,183,42,0.15)'
-                                    },
-                                    {
-                                        status: 'maybe',
-                                        label: '? Maybe',
-                                        activeColor: '#ffc947',
-                                        activeBg: 'rgba(255,201,71,0.12)'
-                                    },
-                                    {
-                                        status: 'not_going',
-                                        label: "✗ Can't go",
-                                        activeColor: 'var(--fb-red)',
-                                        activeBg: 'rgba(240,40,73,0.12)'
-                                    }
-                                ].map(({ status, label, activeColor, activeBg })=>{
-                                    const isActive = myRSVP === status;
-                                    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                        onClick: ()=>handleRSVP(event._id, status),
-                                        className: "fb-action-btn",
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                         style: {
-                                            color: isActive ? activeColor : 'var(--fb-text-secondary)',
-                                            background: isActive ? activeBg : 'transparent',
-                                            fontWeight: isActive ? '700' : '600',
-                                            fontSize: '0.875rem',
-                                            border: isActive ? `1px solid ${activeColor}` : '1px solid var(--fb-border)',
-                                            borderRadius: '8px',
-                                            flex: 1
+                                            margin: '0 0 0.5rem',
+                                            fontSize: '0.75rem',
+                                            fontWeight: '700',
+                                            color: 'var(--fb-text-secondary)',
+                                            textTransform: 'uppercase',
+                                            letterSpacing: '0.05em'
                                         },
-                                        children: label
-                                    }, status, false, {
+                                        children: "Summary"
+                                    }, void 0, false, {
                                         fileName: "[project]/app/groups/[id]/events/page.jsx",
-                                        lineNumber: 181,
-                                        columnNumber: 45
-                                    }, this);
-                                })
-                            }, void 0, false, {
+                                        lineNumber: 237,
+                                        columnNumber: 41
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                        style: {
+                                            margin: 0,
+                                            fontSize: '0.875rem',
+                                            color: 'var(--fb-text)',
+                                            lineHeight: '1.5'
+                                        },
+                                        children: summaries[event._id]
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/groups/[id]/events/page.jsx",
+                                        lineNumber: 240,
+                                        columnNumber: 41
+                                    }, this)
+                                ]
+                            }, void 0, true, {
                                 fileName: "[project]/app/groups/[id]/events/page.jsx",
-                                lineNumber: 173,
-                                columnNumber: 33
+                                lineNumber: 230,
+                                columnNumber: 37
                             }, this)
                         ]
                     }, event._id, true, {
@@ -973,7 +1002,7 @@ function EventsPage() {
                 })
             }, void 0, false, {
                 fileName: "[project]/app/groups/[id]/events/page.jsx",
-                lineNumber: 120,
+                lineNumber: 123,
                 columnNumber: 17
             }, this),
             showCreate && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$CreateEventModal$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -988,13 +1017,13 @@ function EventsPage() {
                 }
             }, void 0, false, {
                 fileName: "[project]/app/groups/[id]/events/page.jsx",
-                lineNumber: 208,
+                lineNumber: 253,
                 columnNumber: 17
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/groups/[id]/events/page.jsx",
-        lineNumber: 86,
+        lineNumber: 89,
         columnNumber: 9
     }, this);
 }

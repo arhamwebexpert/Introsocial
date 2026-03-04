@@ -1,10 +1,9 @@
 {
+  "/api/auth/login/route": "app/api/auth/login/route.js",
+  "/api/auth/logout/route": "app/api/auth/logout/route.js",
   "/api/auth/me/route": "app/api/auth/me/route.js",
-  "/api/auth/signup/route": "app/api/auth/signup/route.js",
-  "/api/events/[id]/rsvp/route": "app/api/events/[id]/rsvp/route.js",
   "/api/events/route": "app/api/events/route.js",
   "/api/groups/[id]/route": "app/api/groups/[id]/route.js",
-  "/api/groups/join/route": "app/api/groups/join/route.js",
   "/api/groups/route": "app/api/groups/route.js",
   "/api/messages/route": "app/api/messages/route.js",
   "/api/moments/route": "app/api/moments/route.js",
@@ -14,6 +13,6 @@
   "/groups/[id]/page": "app/groups/[id]/page.js",
   "/groups/create/page": "app/groups/create/page.js",
   "/login/page": "app/login/page.js",
-  "/page": "app/page.js",
-  "/signup/page": "app/signup/page.js"
+  "/moments/create/page": "app/moments/create/page.js",
+  "/moments/page": "app/moments/page.js"
 }

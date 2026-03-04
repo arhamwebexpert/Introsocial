@@ -31,6 +31,9 @@ export default function GroupFeedPage() {
     const [fetching, setFetching] = useState(true);
     const [error, setError] = useState('');
 
+    // Check if we're on a sub-page (chat or events)
+    const isOnSubPage = pathname?.includes('/chat') || pathname?.includes('/events');
+
     useEffect(() => {
         if (!loading && !user) router.push('/login');
     }, [user, loading]);
@@ -214,110 +217,117 @@ export default function GroupFeedPage() {
             )}
 
             {/* ── Tab Bar: Feed / Chat / Events ── */}
-            <div className="fb-card" style={{
-                marginBottom: '0.75rem',
-                display: 'flex',
-                borderBottom: '1px solid var(--fb-border)',
-                overflow: 'hidden',
-                padding: '0 0.5rem',
-            }}>
-                {[
-                    { label: '📰 Feed', href: `/groups/${id}` },
-                    { label: '💬 Chat', href: `/groups/${id}/chat` },
-                    { label: '📅 Events', href: `/groups/${id}/events` },
-                ].map(({ label, href }) => {
-                    const isActive = pathname === href;
-                    return (
-                        <Link
-                            key={href}
-                            href={href}
-                            style={{
-                                flex: 1,
-                                textAlign: 'center',
-                                padding: '0.75rem 0.5rem',
-                                fontSize: '0.9375rem',
-                                fontWeight: '600',
-                                color: isActive ? 'var(--fb-blue)' : 'var(--fb-text-secondary)',
-                                textDecoration: 'none',
-                                borderBottom: isActive ? '3px solid var(--fb-blue)' : '3px solid transparent',
-                                transition: 'color 0.15s, background 0.15s',
-                                borderRadius: 'var(--fb-radius) var(--fb-radius) 0 0',
-                            }}
-                            onMouseEnter={e => { if (!isActive) { e.currentTarget.style.background = 'var(--fb-hover)'; e.currentTarget.style.color = 'var(--fb-text)'; } }}
-                            onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = isActive ? 'var(--fb-blue)' : 'var(--fb-text-secondary)'; }}
-                        >
-                            {label}
-                        </Link>
-                    );
-                })}
-            </div>
+            {!isOnSubPage && (
+                <div className="fb-card" style={{
+                    marginBottom: '0.75rem',
+                    display: 'flex',
+                    borderBottom: '1px solid var(--fb-border)',
+                    overflow: 'hidden',
+                    padding: '0 0.5rem',
+                }}>
+                    {[
+                        { label: '📰 Feed', href: `/groups/${id}` },
+                        { label: '💬 Chat', href: `/groups/${id}/chat` },
+                        { label: '📅 Events', href: `/groups/${id}/events` },
+                    ].map(({ label, href }) => {
+                        const isActive = pathname === href;
+                        return (
+                            <Link
+                                key={href}
+                                href={href}
+                                style={{
+                                    flex: 1,
+                                    textAlign: 'center',
+                                    padding: '0.75rem 0.5rem',
+                                    fontSize: '0.9375rem',
+                                    fontWeight: '600',
+                                    color: isActive ? 'var(--fb-blue)' : 'var(--fb-text-secondary)',
+                                    textDecoration: 'none',
+                                    borderBottom: isActive ? '3px solid var(--fb-blue)' : '3px solid transparent',
+                                    transition: 'color 0.15s, background 0.15s',
+                                    borderRadius: 'var(--fb-radius) var(--fb-radius) 0 0',
+                                }}
+                                onMouseEnter={e => { if (!isActive) { e.currentTarget.style.background = 'var(--fb-hover)'; e.currentTarget.style.color = 'var(--fb-text)'; } }}
+                                onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = isActive ? 'var(--fb-blue)' : 'var(--fb-text-secondary)'; }}
+                            >
+                                {label}
+                            </Link>
+                        );
+                    })}
+                </div>
+            )}
 
             {/* ── Post Composer Teaser ── */}
-            <div className="fb-card" style={{ padding: '0.875rem 1rem', marginBottom: '0.75rem' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                    <div style={{
-                        width: '40px', height: '40px', borderRadius: '50%',
-                        background: 'var(--fb-blue)',
-                        display: 'flex', alignItems: 'center', justifyContent: 'center',
-                        fontSize: '0.9375rem', fontWeight: '700', color: '#fff', flexShrink: 0,
-                    }}>
-                        {user?.name?.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2) || '?'}
+            {!isOnSubPage && (
+                <div className="fb-card" style={{ padding: '0.875rem 1rem', marginBottom: '0.75rem' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                        <div style={{
+                            width: '40px', height: '40px', borderRadius: '50%',
+                            background: 'var(--fb-blue)',
+                            display: 'flex', alignItems: 'center', justifyContent: 'center',
+                            fontSize: '0.9375rem', fontWeight: '700', color: '#fff', flexShrink: 0,
+                        }}>
+                            {user?.name?.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2) || '?'}
+                        </div>
+                        <Link href={`/moments/create?groupId=${id}`} style={{
+                            flex: 1,
+                            background: 'var(--fb-surface2)',
+                            borderRadius: '20px',
+                            padding: '0.6rem 1rem',
+                            color: 'var(--fb-text-muted)',
+                            textDecoration: 'none',
+                            fontSize: '0.9375rem',
+                            display: 'block',
+                            transition: 'background 0.15s',
+                        }}
+                            onMouseEnter={e => e.currentTarget.style.background = 'var(--fb-surface3)'}
+                            onMouseLeave={e => e.currentTarget.style.background = 'var(--fb-surface2)'}
+                        >
+                            What&apos;s on your mind?
+                        </Link>
                     </div>
-                    <Link href={`/moments/create?groupId=${id}`} style={{
-                        flex: 1,
-                        background: 'var(--fb-surface2)',
-                        borderRadius: '20px',
-                        padding: '0.6rem 1rem',
-                        color: 'var(--fb-text-muted)',
-                        textDecoration: 'none',
-                        fontSize: '0.9375rem',
-                        display: 'block',
-                        transition: 'background 0.15s',
-                    }}
-                        onMouseEnter={e => e.currentTarget.style.background = 'var(--fb-surface3)'}
-                        onMouseLeave={e => e.currentTarget.style.background = 'var(--fb-surface2)'}
-                    >
-                        What&apos;s on your mind?
-                    </Link>
                 </div>
-            </div>
+            )}
 
             {/* ── Moments Feed ── */}
-            {moments.length === 0 ? (
-                <div className="fb-card" style={{ textAlign: 'center', padding: '3rem 1rem' }}>
-                    <div style={{ fontSize: '3rem', marginBottom: '0.75rem' }}>📸</div>
-                    <h3 style={{ margin: '0 0 0.5rem', fontSize: '1.125rem', fontWeight: '700', color: 'var(--fb-text)' }}>
-                        No moments yet
-                    </h3>
-                    <p style={{ margin: '0 0 1.25rem', color: 'var(--fb-text-secondary)' }}>
-                        Be the first to share a memory in this group.
-                    </p>
-                    <Link href={`/moments/create?groupId=${id}`} style={{
-                        display: 'inline-block',
-                        background: 'var(--fb-blue)',
-                        color: '#fff',
-                        fontWeight: '600',
-                        padding: '0.625rem 1.5rem',
-                        borderRadius: '8px',
-                        textDecoration: 'none',
-                        fontSize: '0.9375rem',
-                    }}>
-                        Post a Moment
-                    </Link>
-                </div>
-            ) : (
-
-                <div>
-                    {moments.map((moment) => (
-                        <MomentCard
-                            key={moment._id}
-                            moment={moment}
-                            currentUserId={user?.userId}
-                            onLikeToggle={handleLikeToggle}
-                            onCommentAdded={handleCommentAdded}
-                        />
-                    ))}
-                </div>
+            {!isOnSubPage && (
+                <>
+                    {moments.length === 0 ? (
+                        <div className="fb-card" style={{ textAlign: 'center', padding: '3rem 1rem' }}>
+                            <div style={{ fontSize: '3rem', marginBottom: '0.75rem' }}>📸</div>
+                            <h3 style={{ margin: '0 0 0.5rem', fontSize: '1.125rem', fontWeight: '700', color: 'var(--fb-text)' }}>
+                                No moments yet
+                            </h3>
+                            <p style={{ margin: '0 0 1.25rem', color: 'var(--fb-text-secondary)' }}>
+                                Be the first to share a memory in this group.
+                            </p>
+                            <Link href={`/moments/create?groupId=${id}`} style={{
+                                display: 'inline-block',
+                                background: 'var(--fb-blue)',
+                                color: '#fff',
+                                fontWeight: '600',
+                                padding: '0.625rem 1.5rem',
+                                borderRadius: '8px',
+                                textDecoration: 'none',
+                                fontSize: '0.9375rem',
+                            }}>
+                                Post a Moment
+                            </Link>
+                        </div>
+                    ) : (
+                        <div>
+                            {moments.map((moment) => (
+                                <MomentCard
+                                    key={moment._id}
+                                    moment={moment}
+                                    currentUserId={user?.userId}
+                                    onLikeToggle={handleLikeToggle}
+                                    onCommentAdded={handleCommentAdded}
+                                />
+                            ))}
+                        </div>
+                    )}
+                </>
             )}
         </div>
     );

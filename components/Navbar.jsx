@@ -22,6 +22,14 @@ const GroupsIcon = ({ filled }) => (
     </svg>
 );
 
+const MomentsIcon = ({ filled }) => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill={filled ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth={filled ? '0' : '2'} strokeLinecap="round" strokeLinejoin="round">
+        <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+        <circle cx="8.5" cy="8.5" r="1.5" />
+        <polyline points="21 15 16 10 5 21" />
+    </svg>
+);
+
 const PlusIcon = () => (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
         <line x1="12" y1="5" x2="12" y2="19" />
@@ -43,6 +51,8 @@ export default function Navbar() {
 
     const isHome = pathname === '/dashboard';
     const isGroups = pathname?.startsWith('/groups');
+    const isMoments = pathname?.startsWith('/moments');
+    const isInGroup = pathname?.match(/^\/groups\/[^/]+/); // Check if inside a specific group
 
     const initials = user?.name
         ? user.name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2)
@@ -97,7 +107,7 @@ export default function Navbar() {
                 </Link>
 
                 {/* Center: Nav Tabs (desktop) */}
-                {!loading && user && (
+                {!loading && user && !isInGroup && (
                     <div style={{
                         display: 'flex',
                         gap: '0.25rem',
@@ -140,6 +150,24 @@ export default function Navbar() {
                             onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
                         >
                             <GroupsIcon filled={isGroups} />
+                        </Link>
+                        <Link href="/moments" style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            width: '112px',
+                            height: '44px',
+                            borderRadius: 'var(--fb-radius)',
+                            color: isMoments ? 'var(--fb-blue)' : 'var(--fb-text-secondary)',
+                            background: 'transparent',
+                            textDecoration: 'none',
+                            borderBottom: isMoments ? '3px solid var(--fb-blue)' : '3px solid transparent',
+                            transition: 'background 0.15s, color 0.15s',
+                        }}
+                            onMouseEnter={e => { if (!isMoments) e.currentTarget.style.background = 'var(--fb-hover)'; }}
+                            onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
+                        >
+                            <MomentsIcon filled={isMoments} />
                         </Link>
                     </div>
                 )}
@@ -221,7 +249,7 @@ export default function Navbar() {
             </nav>
 
             {/* ── Mobile Bottom Tab Bar ── */}
-            {!loading && user && (
+            {!loading && user && !isInGroup && (
                 <nav className="mobile-bottom-nav" style={{
                     position: 'fixed',
                     bottom: 0,
@@ -266,21 +294,20 @@ export default function Navbar() {
                         <GroupsIcon filled={isGroups} />
                     </Link>
 
-                    {/* Quick post */}
-                    <div style={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
-                        <div style={{
-                            width: '44px',
-                            height: '44px',
-                            borderRadius: '50%',
-                            background: 'var(--fb-blue)',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            color: '#fff',
-                        }}>
-                            <PlusIcon />
-                        </div>
-                    </div>
+                    <Link href="/moments" style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        flex: 1,
+                        height: '100%',
+                        color: isMoments ? 'var(--fb-blue)' : 'var(--fb-text-secondary)',
+                        textDecoration: 'none',
+                        padding: '0.25rem',
+                        borderTop: isMoments ? '2px solid var(--fb-blue)' : '2px solid transparent',
+                    }}>
+                        <MomentsIcon filled={isMoments} />
+                    </Link>
 
                     {/* User avatar */}
                     <div style={{

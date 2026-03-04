@@ -624,20 +624,22 @@ function ChatPage() {
         style: {
             display: 'flex',
             flexDirection: 'column',
-            height: 'calc(100vh - 120px)',
-            maxWidth: '700px',
-            margin: '0 auto'
+            height: 'calc(100vh - 56px)',
+            maxWidth: '100%',
+            margin: '0 auto',
+            background: '#0a0e14'
         },
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "fb-card",
                 style: {
-                    marginBottom: '0.75rem',
-                    padding: '0.875rem 1rem',
+                    background: '#1c1e22',
+                    padding: '0.75rem 1rem',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
-                    flexShrink: 0
+                    flexShrink: 0,
+                    borderBottom: '1px solid #2a2f38',
+                    boxShadow: '0 1px 2px rgba(0,0,0,0.3)'
                 },
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -652,17 +654,38 @@ function ChatPage() {
                                 style: {
                                     color: 'var(--fb-text-secondary)',
                                     textDecoration: 'none',
-                                    fontSize: '1.25rem',
+                                    fontSize: '1.5rem',
                                     lineHeight: 1,
                                     display: 'flex',
-                                    alignItems: 'center'
+                                    alignItems: 'center',
+                                    padding: '0.25rem'
                                 },
-                                onMouseEnter: (e)=>e.currentTarget.style.color = 'var(--fb-text)',
+                                onMouseEnter: (e)=>e.currentTarget.style.color = '#1877f2',
                                 onMouseLeave: (e)=>e.currentTarget.style.color = 'var(--fb-text-secondary)',
                                 children: "←"
                             }, void 0, false, {
                                 fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                                lineNumber: 122,
+                                lineNumber: 138,
+                                columnNumber: 21
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                style: {
+                                    width: '40px',
+                                    height: '40px',
+                                    borderRadius: '50%',
+                                    background: 'linear-gradient(135deg, #1877f2 0%, #0d5dbf 100%)',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    fontSize: '1rem',
+                                    fontWeight: '700',
+                                    color: '#fff',
+                                    flexShrink: 0
+                                },
+                                children: "💬"
+                            }, void 0, false, {
+                                fileName: "[project]/app/groups/[id]/chat/page.jsx",
+                                lineNumber: 152,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -670,78 +693,119 @@ function ChatPage() {
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
                                         style: {
                                             margin: 0,
-                                            fontSize: '1.0625rem',
-                                            fontWeight: '700',
-                                            color: 'var(--fb-text)'
+                                            fontSize: '1.125rem',
+                                            fontWeight: '600',
+                                            color: '#e4e6eb'
                                         },
                                         children: "Group Chat"
                                     }, void 0, false, {
                                         fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                                        lineNumber: 129,
+                                        lineNumber: 168,
                                         columnNumber: 25
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                         style: {
                                             margin: 0,
-                                            fontSize: '0.8125rem',
-                                            color: 'var(--fb-text-muted)'
+                                            fontSize: '0.75rem',
+                                            color: '#8a8d91'
                                         },
-                                        children: "Click a message to open thread · Promote to Event"
+                                        children: "Tap message for thread"
                                     }, void 0, false, {
                                         fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                                        lineNumber: 130,
+                                        lineNumber: 169,
                                         columnNumber: 25
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                                lineNumber: 128,
+                                lineNumber: 167,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                        lineNumber: 121,
+                        lineNumber: 137,
                         columnNumber: 17
                     }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                        href: `/groups/${groupId}/events`,
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         style: {
-                            fontSize: '0.875rem',
-                            background: 'var(--fb-surface2)',
-                            color: 'var(--fb-text-secondary)',
-                            padding: '0.4rem 0.875rem',
-                            borderRadius: '8px',
-                            textDecoration: 'none',
-                            fontWeight: '600',
-                            border: '1px solid var(--fb-border)',
-                            transition: 'background 0.15s, color 0.15s'
+                            display: 'flex',
+                            gap: '0.5rem'
                         },
-                        onMouseEnter: (e)=>{
-                            e.currentTarget.style.background = 'var(--fb-surface3)';
-                            e.currentTarget.style.color = 'var(--fb-text)';
-                        },
-                        onMouseLeave: (e)=>{
-                            e.currentTarget.style.background = 'var(--fb-surface2)';
-                            e.currentTarget.style.color = 'var(--fb-text-secondary)';
-                        },
-                        children: "📅 Events"
-                    }, void 0, false, {
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                                href: "/moments",
+                                style: {
+                                    fontSize: '0.875rem',
+                                    background: '#2a2f38',
+                                    color: '#8a8d91',
+                                    padding: '0.5rem 0.875rem',
+                                    borderRadius: '20px',
+                                    textDecoration: 'none',
+                                    fontWeight: '600',
+                                    border: '1px solid #3a3f48',
+                                    transition: 'all 0.2s'
+                                },
+                                onMouseEnter: (e)=>{
+                                    e.currentTarget.style.background = '#3a3f48';
+                                    e.currentTarget.style.color = '#e4e6eb';
+                                },
+                                onMouseLeave: (e)=>{
+                                    e.currentTarget.style.background = '#2a2f38';
+                                    e.currentTarget.style.color = '#8a8d91';
+                                },
+                                children: "📸 Moments"
+                            }, void 0, false, {
+                                fileName: "[project]/app/groups/[id]/chat/page.jsx",
+                                lineNumber: 173,
+                                columnNumber: 21
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                                href: `/groups/${groupId}/events`,
+                                style: {
+                                    fontSize: '0.875rem',
+                                    background: '#2a2f38',
+                                    color: '#8a8d91',
+                                    padding: '0.5rem 0.875rem',
+                                    borderRadius: '20px',
+                                    textDecoration: 'none',
+                                    fontWeight: '600',
+                                    border: '1px solid #3a3f48',
+                                    transition: 'all 0.2s'
+                                },
+                                onMouseEnter: (e)=>{
+                                    e.currentTarget.style.background = '#3a3f48';
+                                    e.currentTarget.style.color = '#e4e6eb';
+                                },
+                                onMouseLeave: (e)=>{
+                                    e.currentTarget.style.background = '#2a2f38';
+                                    e.currentTarget.style.color = '#8a8d91';
+                                },
+                                children: "📅 Events"
+                            }, void 0, false, {
+                                fileName: "[project]/app/groups/[id]/chat/page.jsx",
+                                lineNumber: 191,
+                                columnNumber: 21
+                            }, this)
+                        ]
+                    }, void 0, true, {
                         fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                        lineNumber: 133,
+                        lineNumber: 172,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                lineNumber: 120,
+                lineNumber: 127,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 style: {
                     flex: 1,
                     overflowY: 'auto',
-                    paddingRight: '4px'
+                    padding: '1rem',
+                    background: 'linear-gradient(to bottom, #0a0e14 0%, #0d1117 100%)',
+                    backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(24, 119, 242, 0.03) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(24, 119, 242, 0.03) 0%, transparent 50%)'
                 },
                 children: [
                     Object.entries(grouped).map(([date, msgs])=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -750,48 +814,28 @@ function ChatPage() {
                                     style: {
                                         display: 'flex',
                                         alignItems: 'center',
-                                        gap: '0.75rem',
-                                        margin: '1rem 0'
+                                        justifyContent: 'center',
+                                        margin: '1.5rem 0 1rem'
                                     },
-                                    children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            style: {
-                                                flex: 1,
-                                                height: '1px',
-                                                background: 'var(--fb-border)'
-                                            }
-                                        }, void 0, false, {
-                                            fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                                            lineNumber: 159,
-                                            columnNumber: 29
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                            style: {
-                                                fontSize: '0.75rem',
-                                                color: 'var(--fb-text-muted)',
-                                                whiteSpace: 'nowrap'
-                                            },
-                                            children: formatDate(msgs[0].createdAt)
-                                        }, void 0, false, {
-                                            fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                                            lineNumber: 160,
-                                            columnNumber: 29
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            style: {
-                                                flex: 1,
-                                                height: '1px',
-                                                background: 'var(--fb-border)'
-                                            }
-                                        }, void 0, false, {
-                                            fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                                            lineNumber: 161,
-                                            columnNumber: 29
-                                        }, this)
-                                    ]
-                                }, void 0, true, {
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        style: {
+                                            background: '#1c1e22',
+                                            padding: '0.375rem 0.875rem',
+                                            borderRadius: '8px',
+                                            fontSize: '0.75rem',
+                                            color: '#8a8d91',
+                                            fontWeight: '500',
+                                            boxShadow: '0 1px 2px rgba(0,0,0,0.3)'
+                                        },
+                                        children: formatDate(msgs[0].createdAt)
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/groups/[id]/chat/page.jsx",
+                                        lineNumber: 224,
+                                        columnNumber: 29
+                                    }, this)
+                                }, void 0, false, {
                                     fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                                    lineNumber: 158,
+                                    lineNumber: 223,
                                     columnNumber: 25
                                 }, this),
                                 msgs.map((msg)=>{
@@ -803,64 +847,72 @@ function ChatPage() {
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 style: {
                                                     display: 'flex',
-                                                    alignItems: 'flex-end',
+                                                    alignItems: 'flex-start',
                                                     gap: '0.5rem',
                                                     flexDirection: isOwn ? 'row-reverse' : 'row',
-                                                    marginBottom: '2px'
+                                                    marginBottom: '0.5rem',
+                                                    maxWidth: '85%',
+                                                    marginLeft: isOwn ? 'auto' : '0',
+                                                    marginRight: isOwn ? '0' : 'auto'
                                                 },
                                                 children: [
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    !isOwn && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                         style: {
-                                                            width: '28px',
-                                                            height: '28px',
+                                                            width: '32px',
+                                                            height: '32px',
                                                             borderRadius: '50%',
-                                                            background: 'var(--fb-blue)',
+                                                            background: 'linear-gradient(135deg, #1877f2 0%, #0d5dbf 100%)',
                                                             display: 'flex',
                                                             alignItems: 'center',
                                                             justifyContent: 'center',
-                                                            fontSize: '0.75rem',
+                                                            fontSize: '0.875rem',
                                                             fontWeight: '700',
                                                             color: '#fff',
                                                             flexShrink: 0,
-                                                            marginBottom: '4px'
+                                                            boxShadow: '0 2px 4px rgba(0,0,0,0.3)'
                                                         },
                                                         children: msg.userId?.name?.[0]?.toUpperCase() || '?'
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                                                        lineNumber: 173,
-                                                        columnNumber: 41
+                                                        lineNumber: 256,
+                                                        columnNumber: 45
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                         style: {
-                                                            maxWidth: '68%',
                                                             display: 'flex',
                                                             flexDirection: 'column',
-                                                            alignItems: isOwn ? 'flex-end' : 'flex-start'
+                                                            alignItems: isOwn ? 'flex-end' : 'flex-start',
+                                                            flex: 1,
+                                                            minWidth: 0
                                                         },
                                                         children: [
                                                             !isOwn && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                 style: {
-                                                                    fontSize: '0.75rem',
-                                                                    color: 'var(--fb-text-muted)',
-                                                                    marginLeft: '4px',
-                                                                    marginBottom: '3px'
+                                                                    fontSize: '0.8125rem',
+                                                                    fontWeight: '600',
+                                                                    color: '#1877f2',
+                                                                    marginBottom: '0.25rem',
+                                                                    marginLeft: '0.5rem'
                                                                 },
-                                                                children: msg.userId?.name
+                                                                children: msg.userId?.name || 'Unknown User'
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                                                                lineNumber: 185,
+                                                                lineNumber: 283,
                                                                 columnNumber: 49
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                                 style: {
-                                                                    background: isOwn ? 'var(--fb-blue)' : 'var(--fb-surface2)',
-                                                                    color: 'var(--fb-text)',
-                                                                    padding: '0.5rem 0.875rem',
-                                                                    borderRadius: isOwn ? '18px 18px 4px 18px' : '18px 18px 18px 4px',
+                                                                    background: isOwn ? 'linear-gradient(135deg, #1877f2 0%, #0d5dbf 100%)' : '#1c1e22',
+                                                                    color: '#fff',
+                                                                    padding: '0.625rem 0.875rem',
+                                                                    borderRadius: isOwn ? '16px 16px 4px 16px' : '16px 16px 16px 4px',
                                                                     fontSize: '0.9375rem',
                                                                     lineHeight: '1.4',
-                                                                    outline: msg.promotedToEvent ? '1px solid var(--fb-blue)' : 'none',
-                                                                    position: 'relative'
+                                                                    position: 'relative',
+                                                                    wordBreak: 'break-word',
+                                                                    boxShadow: isOwn ? '0 2px 8px rgba(24, 119, 242, 0.4)' : '0 2px 4px rgba(0,0,0,0.3)',
+                                                                    border: msg.promotedToEvent ? '2px solid #25d366' : 'none',
+                                                                    maxWidth: '100%'
                                                                 },
                                                                 children: [
                                                                     msg.text,
@@ -868,18 +920,32 @@ function ChatPage() {
                                                                         style: {
                                                                             marginLeft: '6px',
                                                                             fontSize: '0.75rem',
-                                                                            color: isOwn ? 'rgba(255,255,255,0.8)' : 'var(--fb-text-secondary)'
+                                                                            color: '#25d366',
+                                                                            fontWeight: '600'
                                                                         },
                                                                         children: "📅 Event"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                                                                        lineNumber: 201,
+                                                                        lineNumber: 316,
                                                                         columnNumber: 53
+                                                                    }, this),
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                        style: {
+                                                                            fontSize: '0.6875rem',
+                                                                            color: isOwn ? 'rgba(255,255,255,0.7)' : '#8a8d91',
+                                                                            marginTop: '0.25rem',
+                                                                            textAlign: 'right'
+                                                                        },
+                                                                        children: formatTime(msg.createdAt)
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/app/groups/[id]/chat/page.jsx",
+                                                                        lineNumber: 327,
+                                                                        columnNumber: 49
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                                                                lineNumber: 189,
+                                                                lineNumber: 295,
                                                                 columnNumber: 45
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -887,83 +953,87 @@ function ChatPage() {
                                                                 style: {
                                                                     display: 'flex',
                                                                     alignItems: 'center',
-                                                                    gap: '0.75rem',
-                                                                    marginTop: '3px',
-                                                                    flexDirection: isOwn ? 'row-reverse' : 'row',
+                                                                    gap: '0.5rem',
+                                                                    marginTop: '0.25rem',
                                                                     opacity: 0,
-                                                                    transition: 'opacity 0.15s'
+                                                                    transition: 'opacity 0.2s'
                                                                 },
                                                                 children: [
-                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                        style: {
-                                                                            fontSize: '0.6875rem',
-                                                                            color: 'var(--fb-text-muted)'
-                                                                        },
-                                                                        children: formatTime(msg.createdAt)
-                                                                    }, void 0, false, {
-                                                                        fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                                                                        lineNumber: 207,
-                                                                        columnNumber: 49
-                                                                    }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                                                         onClick: ()=>loadReplies(msg._id),
                                                                         style: {
-                                                                            background: 'none',
-                                                                            border: 'none',
+                                                                            background: '#1c1e22',
+                                                                            border: '1px solid #2a2f38',
                                                                             cursor: 'pointer',
-                                                                            fontSize: '0.8125rem',
-                                                                            color: 'var(--fb-text-secondary)',
+                                                                            fontSize: '0.75rem',
+                                                                            color: '#8a8d91',
                                                                             fontFamily: 'inherit',
-                                                                            padding: '0 4px',
-                                                                            transition: 'color 0.15s'
+                                                                            padding: '0.25rem 0.625rem',
+                                                                            borderRadius: '12px',
+                                                                            transition: 'all 0.2s',
+                                                                            fontWeight: '500'
                                                                         },
-                                                                        onMouseEnter: (e)=>e.currentTarget.style.color = 'var(--fb-blue)',
-                                                                        onMouseLeave: (e)=>e.currentTarget.style.color = 'var(--fb-text-secondary)',
+                                                                        onMouseEnter: (e)=>{
+                                                                            e.currentTarget.style.background = '#2a2f38';
+                                                                            e.currentTarget.style.color = '#1877f2';
+                                                                        },
+                                                                        onMouseLeave: (e)=>{
+                                                                            e.currentTarget.style.background = '#1c1e22';
+                                                                            e.currentTarget.style.color = '#8a8d91';
+                                                                        },
                                                                         children: [
                                                                             "💬 ",
-                                                                            msg.replyCount > 0 ? `${msg.replyCount} replies` : 'Reply'
+                                                                            msg.replyCount > 0 ? `${msg.replyCount}` : 'Reply'
                                                                         ]
                                                                     }, void 0, true, {
                                                                         fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                                                                        lineNumber: 209,
+                                                                        lineNumber: 346,
                                                                         columnNumber: 49
                                                                     }, this),
                                                                     !msg.promotedToEvent && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                                                         onClick: ()=>setPromoteTarget(msg),
                                                                         style: {
-                                                                            background: 'none',
-                                                                            border: 'none',
+                                                                            background: '#1c1e22',
+                                                                            border: '1px solid #2a2f38',
                                                                             cursor: 'pointer',
-                                                                            fontSize: '0.8125rem',
-                                                                            color: 'var(--fb-text-secondary)',
+                                                                            fontSize: '0.75rem',
+                                                                            color: '#8a8d91',
                                                                             fontFamily: 'inherit',
-                                                                            padding: '0 4px',
-                                                                            transition: 'color 0.15s'
+                                                                            padding: '0.25rem 0.625rem',
+                                                                            borderRadius: '12px',
+                                                                            transition: 'all 0.2s',
+                                                                            fontWeight: '500'
                                                                         },
-                                                                        onMouseEnter: (e)=>e.currentTarget.style.color = 'var(--fb-text)',
-                                                                        onMouseLeave: (e)=>e.currentTarget.style.color = 'var(--fb-text-secondary)',
-                                                                        children: "📅 Make Event"
+                                                                        onMouseEnter: (e)=>{
+                                                                            e.currentTarget.style.background = '#2a2f38';
+                                                                            e.currentTarget.style.color = '#25d366';
+                                                                        },
+                                                                        onMouseLeave: (e)=>{
+                                                                            e.currentTarget.style.background = '#1c1e22';
+                                                                            e.currentTarget.style.color = '#8a8d91';
+                                                                        },
+                                                                        children: "📅 Event"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                                                                        lineNumber: 219,
+                                                                        lineNumber: 367,
                                                                         columnNumber: 53
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                                                                lineNumber: 206,
+                                                                lineNumber: 338,
                                                                 columnNumber: 45
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                                                        lineNumber: 183,
+                                                        lineNumber: 274,
                                                         columnNumber: 41
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                                                lineNumber: 171,
+                                                lineNumber: 244,
                                                 columnNumber: 37
                                             }, this),
                                             isThreadOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ThreadPanel, {
@@ -973,20 +1043,20 @@ function ChatPage() {
                                                 currentUserId: user?.userId
                                             }, void 0, false, {
                                                 fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                                                lineNumber: 234,
+                                                lineNumber: 393,
                                                 columnNumber: 41
                                             }, this)
                                         ]
                                     }, msg._id, true, {
                                         fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                                        lineNumber: 169,
+                                        lineNumber: 242,
                                         columnNumber: 33
                                     }, this);
                                 })
                             ]
                         }, date, true, {
                             fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                            lineNumber: 156,
+                            lineNumber: 221,
                             columnNumber: 21
                         }, this)),
                     messages.length === 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -997,103 +1067,134 @@ function ChatPage() {
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                 style: {
-                                    fontSize: '3rem',
-                                    marginBottom: '0.75rem'
+                                    fontSize: '4rem',
+                                    marginBottom: '0.75rem',
+                                    opacity: 0.3
                                 },
                                 children: "💬"
                             }, void 0, false, {
                                 fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                                lineNumber: 249,
+                                lineNumber: 408,
                                 columnNumber: 25
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                 style: {
-                                    color: 'var(--fb-text-muted)',
-                                    margin: 0
+                                    color: '#8a8d91',
+                                    margin: 0,
+                                    fontSize: '0.9375rem'
                                 },
-                                children: "No messages yet. Say hello!"
+                                children: "No messages yet. Start the conversation!"
                             }, void 0, false, {
                                 fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                                lineNumber: 250,
+                                lineNumber: 409,
                                 columnNumber: 25
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                        lineNumber: 248,
+                        lineNumber: 407,
                         columnNumber: 21
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         ref: bottomRef
                     }, void 0, false, {
                         fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                        lineNumber: 254,
+                        lineNumber: 413,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                lineNumber: 154,
+                lineNumber: 213,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "fb-card",
                 style: {
-                    marginTop: '0.75rem',
-                    padding: '0.75rem',
-                    flexShrink: 0
+                    background: '#1c1e22',
+                    padding: '0.875rem 1rem',
+                    flexShrink: 0,
+                    borderTop: '1px solid #2a2f38',
+                    boxShadow: '0 -2px 8px rgba(0,0,0,0.3)'
                 },
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
                     onSubmit: sendMessage,
                     style: {
                         display: 'flex',
-                        gap: '0.5rem',
+                        gap: '0.625rem',
                         alignItems: 'center'
                     },
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
                             type: "text",
-                            placeholder: "Write a message...",
+                            placeholder: "Type a message...",
                             value: text,
                             onChange: (e)=>setText(e.target.value),
-                            className: "fb-input",
                             style: {
                                 flex: 1,
-                                borderRadius: '20px',
+                                borderRadius: '24px',
                                 margin: 0,
-                                padding: '0.6rem 1rem',
-                                fontSize: '0.9375rem'
+                                padding: '0.75rem 1.125rem',
+                                fontSize: '0.9375rem',
+                                background: '#2a2f38',
+                                border: '1px solid #3a3f48',
+                                color: '#e4e6eb',
+                                outline: 'none',
+                                transition: 'all 0.2s'
+                            },
+                            onFocus: (e)=>{
+                                e.target.style.background = '#3a3f48';
+                                e.target.style.borderColor = '#1877f2';
+                            },
+                            onBlur: (e)=>{
+                                e.target.style.background = '#2a2f38';
+                                e.target.style.borderColor = '#3a3f48';
                             }
                         }, void 0, false, {
                             fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                            lineNumber: 260,
+                            lineNumber: 425,
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                             type: "submit",
                             disabled: sending || !text.trim(),
-                            className: "btn-primary",
                             style: {
-                                width: 'auto',
-                                padding: '0.6rem 1.25rem',
-                                borderRadius: '20px',
-                                whiteSpace: 'nowrap'
+                                width: '48px',
+                                height: '48px',
+                                padding: 0,
+                                borderRadius: '50%',
+                                background: text.trim() ? 'linear-gradient(135deg, #1877f2 0%, #0d5dbf 100%)' : '#2a2f38',
+                                color: '#fff',
+                                border: 'none',
+                                cursor: text.trim() ? 'pointer' : 'not-allowed',
+                                fontSize: '1.25rem',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                transition: 'all 0.2s',
+                                boxShadow: text.trim() ? '0 2px 8px rgba(24, 119, 242, 0.4)' : 'none',
+                                opacity: text.trim() ? 1 : 0.5
                             },
-                            children: sending ? '...' : 'Send'
+                            onMouseEnter: (e)=>{
+                                if (text.trim()) e.currentTarget.style.transform = 'scale(1.05)';
+                            },
+                            onMouseLeave: (e)=>{
+                                e.currentTarget.style.transform = 'scale(1)';
+                            },
+                            children: sending ? '...' : '➤'
                         }, void 0, false, {
                             fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                            lineNumber: 268,
+                            lineNumber: 445,
                             columnNumber: 21
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                    lineNumber: 259,
+                    lineNumber: 424,
                     columnNumber: 17
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                lineNumber: 258,
+                lineNumber: 417,
                 columnNumber: 13
             }, this),
             promoteTarget && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$PromoteEventModal$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -1109,7 +1210,7 @@ function ChatPage() {
                 }
             }, void 0, false, {
                 fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                lineNumber: 281,
+                lineNumber: 475,
                 columnNumber: 17
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("style", {
@@ -1118,7 +1219,7 @@ function ChatPage() {
             `
             }, void 0, false, {
                 fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                lineNumber: 295,
+                lineNumber: 489,
                 columnNumber: 13
             }, this)
         ]
@@ -1150,122 +1251,131 @@ function ThreadPanel({ messageId, replies, onReply, currentUserId }) {
         setSending(false);
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "fb-card",
         style: {
             marginLeft: '2.5rem',
-            marginTop: '4px',
-            marginBottom: '0.75rem',
-            padding: '0.875rem',
-            borderLeft: '3px solid var(--fb-blue)'
+            marginTop: '0.5rem',
+            marginBottom: '1rem',
+            padding: '1rem',
+            background: '#1c1e22',
+            borderRadius: '12px',
+            borderLeft: '3px solid #1877f2',
+            boxShadow: '0 2px 8px rgba(0,0,0,0.3)'
         },
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                 style: {
-                    margin: '0 0 0.75rem',
+                    margin: '0 0 0.875rem',
                     fontSize: '0.75rem',
-                    color: 'var(--fb-text-muted)',
-                    fontWeight: '600',
+                    color: '#8a8d91',
+                    fontWeight: '700',
                     textTransform: 'uppercase',
                     letterSpacing: '0.05em'
                 },
-                children: "Thread"
+                children: "💬 Thread"
             }, void 0, false, {
                 fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                lineNumber: 318,
+                lineNumber: 521,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 style: {
-                    marginBottom: '0.75rem',
-                    maxHeight: '180px',
+                    marginBottom: '0.875rem',
+                    maxHeight: '200px',
                     overflowY: 'auto'
                 },
                 children: [
                     replies.length === 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                         style: {
                             fontSize: '0.8125rem',
-                            color: 'var(--fb-text-muted)',
+                            color: '#8a8d91',
                             fontStyle: 'italic',
                             margin: 0
                         },
-                        children: "No replies yet"
+                        children: "No replies yet. Start the thread!"
                     }, void 0, false, {
                         fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                        lineNumber: 322,
+                        lineNumber: 534,
                         columnNumber: 21
                     }, this),
                     replies.map((r)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             style: {
                                 display: 'flex',
-                                gap: '0.5rem',
+                                gap: '0.625rem',
                                 alignItems: 'flex-start',
-                                marginBottom: '0.5rem'
+                                marginBottom: '0.75rem',
+                                padding: '0.625rem',
+                                background: '#2a2f38',
+                                borderRadius: '8px'
                             },
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     style: {
-                                        width: '24px',
-                                        height: '24px',
+                                        width: '28px',
+                                        height: '28px',
                                         borderRadius: '50%',
-                                        background: 'var(--fb-surface3)',
+                                        background: 'linear-gradient(135deg, #1877f2 0%, #0d5dbf 100%)',
                                         display: 'flex',
                                         alignItems: 'center',
                                         justifyContent: 'center',
-                                        fontSize: '0.6875rem',
+                                        fontSize: '0.75rem',
                                         fontWeight: '700',
-                                        color: 'var(--fb-text)',
+                                        color: '#fff',
                                         flexShrink: 0
                                     },
                                     children: r.userId?.name?.[0]?.toUpperCase() || '?'
                                 }, void 0, false, {
                                     fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                                    lineNumber: 326,
+                                    lineNumber: 548,
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    style: {
+                                        flex: 1,
+                                        minWidth: 0
+                                    },
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                             style: {
                                                 fontSize: '0.8125rem',
                                                 fontWeight: '600',
-                                                color: 'var(--fb-text-secondary)'
+                                                color: '#1877f2',
+                                                display: 'block',
+                                                marginBottom: '0.25rem'
                                             },
-                                            children: [
-                                                r.userId?.name,
-                                                " "
-                                            ]
-                                        }, void 0, true, {
+                                            children: r.userId?.name
+                                        }, void 0, false, {
                                             fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                                            lineNumber: 336,
+                                            lineNumber: 564,
                                             columnNumber: 29
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                             style: {
-                                                fontSize: '0.8125rem',
-                                                color: 'var(--fb-text)'
+                                                fontSize: '0.875rem',
+                                                color: '#e4e6eb',
+                                                wordBreak: 'break-word'
                                             },
                                             children: r.text
                                         }, void 0, false, {
                                             fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                                            lineNumber: 337,
+                                            lineNumber: 573,
                                             columnNumber: 29
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                                    lineNumber: 335,
+                                    lineNumber: 563,
                                     columnNumber: 25
                                 }, this)
                             ]
                         }, r._id, true, {
                             fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                            lineNumber: 325,
+                            lineNumber: 539,
                             columnNumber: 21
                         }, this))
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                lineNumber: 320,
+                lineNumber: 532,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
@@ -1280,45 +1390,56 @@ function ThreadPanel({ messageId, replies, onReply, currentUserId }) {
                         placeholder: "Reply in thread...",
                         value: replyText,
                         onChange: (e)=>setReplyText(e.target.value),
-                        className: "fb-input",
                         style: {
                             flex: 1,
                             margin: 0,
                             fontSize: '0.875rem',
-                            padding: '0.5rem 0.875rem',
-                            borderRadius: '16px'
+                            padding: '0.625rem 0.875rem',
+                            borderRadius: '20px',
+                            background: '#2a2f38',
+                            border: '1px solid #3a3f48',
+                            color: '#e4e6eb',
+                            outline: 'none'
                         }
                     }, void 0, false, {
                         fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                        lineNumber: 344,
+                        lineNumber: 586,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                         type: "submit",
                         disabled: sending || !replyText.trim(),
-                        className: "btn-primary",
                         style: {
-                            width: 'auto',
-                            padding: '0.5rem 1rem',
-                            borderRadius: '16px',
-                            fontSize: '0.875rem'
+                            width: '36px',
+                            height: '36px',
+                            padding: 0,
+                            borderRadius: '50%',
+                            fontSize: '1rem',
+                            background: replyText.trim() ? 'linear-gradient(135deg, #1877f2 0%, #0d5dbf 100%)' : '#2a2f38',
+                            color: '#fff',
+                            border: 'none',
+                            cursor: replyText.trim() ? 'pointer' : 'not-allowed',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            opacity: replyText.trim() ? 1 : 0.5
                         },
-                        children: sending ? '...' : '↑'
+                        children: sending ? '...' : '➤'
                     }, void 0, false, {
                         fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                        lineNumber: 352,
+                        lineNumber: 603,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                lineNumber: 343,
+                lineNumber: 585,
                 columnNumber: 13
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/groups/[id]/chat/page.jsx",
-        lineNumber: 317,
+        lineNumber: 511,
         columnNumber: 9
     }, this);
 }

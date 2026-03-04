@@ -295,6 +295,10 @@
     inset-inline-start: var(--spacing);
   }
 
+  .end {
+    inset-inline-end: var(--spacing);
+  }
+
   .block {
     display: block;
   }

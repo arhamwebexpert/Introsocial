@@ -676,6 +676,8 @@ function GroupFeedPage() {
     const [moments, setMoments] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])([]);
     const [fetching, setFetching] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(true);
     const [error, setError] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('');
+    // Check if we're on a sub-page (chat or events)
+    const isOnSubPage = pathname?.includes('/chat') || pathname?.includes('/events');
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         if (!loading && !user) router.push('/login');
     }, [
@@ -742,7 +744,7 @@ function GroupFeedPage() {
                         }
                     }, void 0, false, {
                         fileName: "[project]/app/groups/[id]/page.jsx",
-                        lineNumber: 72,
+                        lineNumber: 75,
                         columnNumber: 21
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -753,25 +755,25 @@ function GroupFeedPage() {
                         children: "Loading feed…"
                     }, void 0, false, {
                         fileName: "[project]/app/groups/[id]/page.jsx",
-                        lineNumber: 80,
+                        lineNumber: 83,
                         columnNumber: 21
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("style", {
                         children: `@keyframes spin { to { transform: rotate(360deg); } }`
                     }, void 0, false, {
                         fileName: "[project]/app/groups/[id]/page.jsx",
-                        lineNumber: 81,
+                        lineNumber: 84,
                         columnNumber: 21
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/groups/[id]/page.jsx",
-                lineNumber: 71,
+                lineNumber: 74,
                 columnNumber: 17
             }, this)
         }, void 0, false, {
             fileName: "[project]/app/groups/[id]/page.jsx",
-            lineNumber: 70,
+            lineNumber: 73,
             columnNumber: 13
         }, this);
     }
@@ -791,7 +793,7 @@ function GroupFeedPage() {
                     children: error
                 }, void 0, false, {
                     fileName: "[project]/app/groups/[id]/page.jsx",
-                    lineNumber: 90,
+                    lineNumber: 93,
                     columnNumber: 17
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -804,13 +806,13 @@ function GroupFeedPage() {
                     children: "← Back to dashboard"
                 }, void 0, false, {
                     fileName: "[project]/app/groups/[id]/page.jsx",
-                    lineNumber: 91,
+                    lineNumber: 94,
                     columnNumber: 17
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/app/groups/[id]/page.jsx",
-            lineNumber: 89,
+            lineNumber: 92,
             columnNumber: 13
         }, this);
     }
@@ -836,14 +838,14 @@ function GroupFeedPage() {
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(BackIcon, {}, void 0, false, {
                         fileName: "[project]/app/groups/[id]/page.jsx",
-                        lineNumber: 118,
+                        lineNumber: 121,
                         columnNumber: 17
                     }, this),
                     " Dashboard"
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/groups/[id]/page.jsx",
-                lineNumber: 103,
+                lineNumber: 106,
                 columnNumber: 13
             }, this),
             group && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -871,7 +873,7 @@ function GroupFeedPage() {
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/app/groups/[id]/page.jsx",
-                                lineNumber: 132,
+                                lineNumber: 135,
                                 columnNumber: 29
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -882,7 +884,7 @@ function GroupFeedPage() {
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/app/groups/[id]/page.jsx",
-                                lineNumber: 135,
+                                lineNumber: 138,
                                 columnNumber: 25
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -903,18 +905,18 @@ function GroupFeedPage() {
                                     children: group.name
                                 }, void 0, false, {
                                     fileName: "[project]/app/groups/[id]/page.jsx",
-                                    lineNumber: 147,
+                                    lineNumber: 150,
                                     columnNumber: 29
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/app/groups/[id]/page.jsx",
-                                lineNumber: 141,
+                                lineNumber: 144,
                                 columnNumber: 25
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/groups/[id]/page.jsx",
-                        lineNumber: 125,
+                        lineNumber: 128,
                         columnNumber: 21
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -938,7 +940,7 @@ function GroupFeedPage() {
                                         children: group.description
                                     }, void 0, false, {
                                         fileName: "[project]/app/groups/[id]/page.jsx",
-                                        lineNumber: 170,
+                                        lineNumber: 173,
                                         columnNumber: 33
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -964,7 +966,7 @@ function GroupFeedPage() {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/groups/[id]/page.jsx",
-                                                lineNumber: 175,
+                                                lineNumber: 178,
                                                 columnNumber: 33
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -980,19 +982,19 @@ function GroupFeedPage() {
                                                 children: group.inviteCode
                                             }, void 0, false, {
                                                 fileName: "[project]/app/groups/[id]/page.jsx",
-                                                lineNumber: 178,
+                                                lineNumber: 181,
                                                 columnNumber: 33
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/groups/[id]/page.jsx",
-                                        lineNumber: 174,
+                                        lineNumber: 177,
                                         columnNumber: 29
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/groups/[id]/page.jsx",
-                                lineNumber: 168,
+                                lineNumber: 171,
                                 columnNumber: 25
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -1016,35 +1018,35 @@ function GroupFeedPage() {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(CameraIcon, {}, void 0, false, {
                                         fileName: "[project]/app/groups/[id]/page.jsx",
-                                        lineNumber: 209,
+                                        lineNumber: 212,
                                         columnNumber: 29
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         children: "Post Moment"
                                     }, void 0, false, {
                                         fileName: "[project]/app/groups/[id]/page.jsx",
-                                        lineNumber: 210,
+                                        lineNumber: 213,
                                         columnNumber: 29
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/groups/[id]/page.jsx",
-                                lineNumber: 192,
+                                lineNumber: 195,
                                 columnNumber: 25
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/groups/[id]/page.jsx",
-                        lineNumber: 160,
+                        lineNumber: 163,
                         columnNumber: 21
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/groups/[id]/page.jsx",
-                lineNumber: 123,
+                lineNumber: 126,
                 columnNumber: 17
             }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            !isOnSubPage && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "fb-card",
                 style: {
                     marginBottom: '0.75rem',
@@ -1095,16 +1097,16 @@ function GroupFeedPage() {
                         children: label
                     }, href, false, {
                         fileName: "[project]/app/groups/[id]/page.jsx",
-                        lineNumber: 231,
-                        columnNumber: 25
+                        lineNumber: 235,
+                        columnNumber: 29
                     }, this);
                 })
             }, void 0, false, {
                 fileName: "[project]/app/groups/[id]/page.jsx",
-                lineNumber: 217,
-                columnNumber: 13
+                lineNumber: 221,
+                columnNumber: 17
             }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            !isOnSubPage && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "fb-card",
                 style: {
                     padding: '0.875rem 1rem',
@@ -1134,8 +1136,8 @@ function GroupFeedPage() {
                             children: user?.name?.split(' ').map((w)=>w[0]).join('').toUpperCase().slice(0, 2) || '?'
                         }, void 0, false, {
                             fileName: "[project]/app/groups/[id]/page.jsx",
-                            lineNumber: 258,
-                            columnNumber: 21
+                            lineNumber: 264,
+                            columnNumber: 25
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                             href: `/moments/create?groupId=${id}`,
@@ -1155,105 +1157,107 @@ function GroupFeedPage() {
                             children: "What's on your mind?"
                         }, void 0, false, {
                             fileName: "[project]/app/groups/[id]/page.jsx",
-                            lineNumber: 266,
-                            columnNumber: 21
+                            lineNumber: 272,
+                            columnNumber: 25
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/groups/[id]/page.jsx",
-                    lineNumber: 257,
-                    columnNumber: 17
+                    lineNumber: 263,
+                    columnNumber: 21
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/groups/[id]/page.jsx",
-                lineNumber: 256,
-                columnNumber: 13
+                lineNumber: 262,
+                columnNumber: 17
             }, this),
-            moments.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "fb-card",
-                style: {
-                    textAlign: 'center',
-                    padding: '3rem 1rem'
-                },
-                children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        style: {
-                            fontSize: '3rem',
-                            marginBottom: '0.75rem'
-                        },
-                        children: "📸"
-                    }, void 0, false, {
-                        fileName: "[project]/app/groups/[id]/page.jsx",
-                        lineNumber: 288,
-                        columnNumber: 21
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                        style: {
-                            margin: '0 0 0.5rem',
-                            fontSize: '1.125rem',
-                            fontWeight: '700',
-                            color: 'var(--fb-text)'
-                        },
-                        children: "No moments yet"
-                    }, void 0, false, {
-                        fileName: "[project]/app/groups/[id]/page.jsx",
-                        lineNumber: 289,
-                        columnNumber: 21
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                        style: {
-                            margin: '0 0 1.25rem',
-                            color: 'var(--fb-text-secondary)'
-                        },
-                        children: "Be the first to share a memory in this group."
-                    }, void 0, false, {
-                        fileName: "[project]/app/groups/[id]/page.jsx",
-                        lineNumber: 292,
-                        columnNumber: 21
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
-                        href: `/moments/create?groupId=${id}`,
-                        style: {
-                            display: 'inline-block',
-                            background: 'var(--fb-blue)',
-                            color: '#fff',
-                            fontWeight: '600',
-                            padding: '0.625rem 1.5rem',
-                            borderRadius: '8px',
-                            textDecoration: 'none',
-                            fontSize: '0.9375rem'
-                        },
-                        children: "Post a Moment"
-                    }, void 0, false, {
-                        fileName: "[project]/app/groups/[id]/page.jsx",
-                        lineNumber: 295,
-                        columnNumber: 21
-                    }, this)
-                ]
-            }, void 0, true, {
-                fileName: "[project]/app/groups/[id]/page.jsx",
-                lineNumber: 287,
-                columnNumber: 17
-            }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                children: moments.map((moment)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$MomentCard$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
-                        moment: moment,
-                        currentUserId: user?.userId,
-                        onLikeToggle: handleLikeToggle,
-                        onCommentAdded: handleCommentAdded
-                    }, moment._id, false, {
-                        fileName: "[project]/app/groups/[id]/page.jsx",
-                        lineNumber: 312,
-                        columnNumber: 25
-                    }, this))
-            }, void 0, false, {
-                fileName: "[project]/app/groups/[id]/page.jsx",
-                lineNumber: 310,
-                columnNumber: 17
-            }, this)
+            !isOnSubPage && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
+                children: moments.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "fb-card",
+                    style: {
+                        textAlign: 'center',
+                        padding: '3rem 1rem'
+                    },
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            style: {
+                                fontSize: '3rem',
+                                marginBottom: '0.75rem'
+                            },
+                            children: "📸"
+                        }, void 0, false, {
+                            fileName: "[project]/app/groups/[id]/page.jsx",
+                            lineNumber: 297,
+                            columnNumber: 29
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                            style: {
+                                margin: '0 0 0.5rem',
+                                fontSize: '1.125rem',
+                                fontWeight: '700',
+                                color: 'var(--fb-text)'
+                            },
+                            children: "No moments yet"
+                        }, void 0, false, {
+                            fileName: "[project]/app/groups/[id]/page.jsx",
+                            lineNumber: 298,
+                            columnNumber: 29
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                            style: {
+                                margin: '0 0 1.25rem',
+                                color: 'var(--fb-text-secondary)'
+                            },
+                            children: "Be the first to share a memory in this group."
+                        }, void 0, false, {
+                            fileName: "[project]/app/groups/[id]/page.jsx",
+                            lineNumber: 301,
+                            columnNumber: 29
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
+                            href: `/moments/create?groupId=${id}`,
+                            style: {
+                                display: 'inline-block',
+                                background: 'var(--fb-blue)',
+                                color: '#fff',
+                                fontWeight: '600',
+                                padding: '0.625rem 1.5rem',
+                                borderRadius: '8px',
+                                textDecoration: 'none',
+                                fontSize: '0.9375rem'
+                            },
+                            children: "Post a Moment"
+                        }, void 0, false, {
+                            fileName: "[project]/app/groups/[id]/page.jsx",
+                            lineNumber: 304,
+                            columnNumber: 29
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/app/groups/[id]/page.jsx",
+                    lineNumber: 296,
+                    columnNumber: 25
+                }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    children: moments.map((moment)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$MomentCard$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
+                            moment: moment,
+                            currentUserId: user?.userId,
+                            onLikeToggle: handleLikeToggle,
+                            onCommentAdded: handleCommentAdded
+                        }, moment._id, false, {
+                            fileName: "[project]/app/groups/[id]/page.jsx",
+                            lineNumber: 320,
+                            columnNumber: 33
+                        }, this))
+                }, void 0, false, {
+                    fileName: "[project]/app/groups/[id]/page.jsx",
+                    lineNumber: 318,
+                    columnNumber: 25
+                }, this)
+            }, void 0, false)
         ]
     }, void 0, true, {
         fileName: "[project]/app/groups/[id]/page.jsx",
-        lineNumber: 101,
+        lineNumber: 104,
         columnNumber: 9
     }, this);
 }
