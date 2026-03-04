@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 46, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/arham/Desktop/introsocial/app/api/auth/logout/route.js"],"sourcesContent":["// app/api/auth/logout/route.js\r\n// Clears the auth cookie\r\n\r\nimport { NextResponse } from \"next/server\";\r\n\r\nexport async function POST() {\r\n  const response = NextResponse.json({ message: \"Logged out\" });\r\n  response.cookies.set(\"token\", \"\", { maxAge: 0, path: \"/\" });\r\n  return response;\r\n}\r\n"],"names":[],"mappings":";;;;AAAA,+BAA+B;AAC/B,yBAAyB;AAEzB;;AAEO,eAAe;IACpB,MAAM,WAAW,gJAAY,CAAC,IAAI,CAAC;QAAE,SAAS;IAAa;IAC3D,SAAS,OAAO,CAAC,GAAG,CAAC,SAAS,IAAI;QAAE,QAAQ;QAAG,MAAM;IAAI;IACzD,OAAO;AACT"}}]
+}
