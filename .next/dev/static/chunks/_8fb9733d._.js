@@ -585,7 +585,9 @@ function EventsPage() {
                     padding: '0.875rem 1rem',
                     display: 'flex',
                     alignItems: 'center',
-                    justifyContent: 'space-between'
+                    justifyContent: 'space-between',
+                    flexWrap: 'wrap',
+                    gap: '0.75rem'
                 },
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -638,16 +640,44 @@ function EventsPage() {
                         lineNumber: 93,
                         columnNumber: 17
                     }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                        onClick: ()=>setShowCreate(true),
-                        className: "btn-primary",
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         style: {
-                            width: 'auto',
-                            padding: '0.5rem 1rem',
-                            fontSize: '0.9375rem'
+                            display: 'flex',
+                            gap: '0.5rem'
                         },
-                        children: "+ New Event"
-                    }, void 0, false, {
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                                href: "/moments",
+                                className: "btn-secondary",
+                                style: {
+                                    width: 'auto',
+                                    padding: '0.5rem 1rem',
+                                    fontSize: '0.9375rem',
+                                    textDecoration: 'none',
+                                    display: 'inline-block'
+                                },
+                                children: "📸 Moments"
+                            }, void 0, false, {
+                                fileName: "[project]/app/groups/[id]/events/page.jsx",
+                                lineNumber: 104,
+                                columnNumber: 21
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                onClick: ()=>setShowCreate(true),
+                                className: "btn-primary",
+                                style: {
+                                    width: 'auto',
+                                    padding: '0.5rem 1rem',
+                                    fontSize: '0.9375rem'
+                                },
+                                children: "+ New Event"
+                            }, void 0, false, {
+                                fileName: "[project]/app/groups/[id]/events/page.jsx",
+                                lineNumber: 117,
+                                columnNumber: 21
+                            }, this)
+                        ]
+                    }, void 0, true, {
                         fileName: "[project]/app/groups/[id]/events/page.jsx",
                         lineNumber: 103,
                         columnNumber: 17
@@ -673,7 +703,7 @@ function EventsPage() {
                         children: "📅"
                     }, void 0, false, {
                         fileName: "[project]/app/groups/[id]/events/page.jsx",
-                        lineNumber: 115,
+                        lineNumber: 130,
                         columnNumber: 21
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -686,7 +716,7 @@ function EventsPage() {
                         children: "No events yet"
                     }, void 0, false, {
                         fileName: "[project]/app/groups/[id]/events/page.jsx",
-                        lineNumber: 116,
+                        lineNumber: 131,
                         columnNumber: 21
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -697,7 +727,7 @@ function EventsPage() {
                         children: "Promote a chat thread to an event, or create one directly"
                     }, void 0, false, {
                         fileName: "[project]/app/groups/[id]/events/page.jsx",
-                        lineNumber: 117,
+                        lineNumber: 132,
                         columnNumber: 21
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -710,13 +740,13 @@ function EventsPage() {
                         children: "Create Event"
                     }, void 0, false, {
                         fileName: "[project]/app/groups/[id]/events/page.jsx",
-                        lineNumber: 118,
+                        lineNumber: 133,
                         columnNumber: 21
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/groups/[id]/events/page.jsx",
-                lineNumber: 114,
+                lineNumber: 129,
                 columnNumber: 17
             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 style: {
@@ -760,7 +790,7 @@ function EventsPage() {
                                                     children: event.title
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/groups/[id]/events/page.jsx",
-                                                    lineNumber: 131,
+                                                    lineNumber: 146,
                                                     columnNumber: 45
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -775,7 +805,7 @@ function EventsPage() {
                                                     children: event.visibility === 'private' ? '🔒 Private' : '🌐 Public'
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/groups/[id]/events/page.jsx",
-                                                    lineNumber: 132,
+                                                    lineNumber: 147,
                                                     columnNumber: 45
                                                 }, this),
                                                 event.sourceMessageId && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -790,13 +820,13 @@ function EventsPage() {
                                                     children: "💬 From thread"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/groups/[id]/events/page.jsx",
-                                                    lineNumber: 143,
+                                                    lineNumber: 158,
                                                     columnNumber: 49
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/groups/[id]/events/page.jsx",
-                                            lineNumber: 130,
+                                            lineNumber: 145,
                                             columnNumber: 41
                                         }, this),
                                         event.description && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -808,18 +838,18 @@ function EventsPage() {
                                             children: event.description
                                         }, void 0, false, {
                                             fileName: "[project]/app/groups/[id]/events/page.jsx",
-                                            lineNumber: 153,
+                                            lineNumber: 168,
                                             columnNumber: 45
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/groups/[id]/events/page.jsx",
-                                    lineNumber: 129,
+                                    lineNumber: 144,
                                     columnNumber: 37
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/app/groups/[id]/events/page.jsx",
-                                lineNumber: 128,
+                                lineNumber: 143,
                                 columnNumber: 33
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -839,7 +869,7 @@ function EventsPage() {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/groups/[id]/events/page.jsx",
-                                        lineNumber: 160,
+                                        lineNumber: 175,
                                         columnNumber: 56
                                     }, this),
                                     event.location && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -849,7 +879,7 @@ function EventsPage() {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/groups/[id]/events/page.jsx",
-                                        lineNumber: 161,
+                                        lineNumber: 176,
                                         columnNumber: 56
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -859,13 +889,13 @@ function EventsPage() {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/groups/[id]/events/page.jsx",
-                                        lineNumber: 162,
+                                        lineNumber: 177,
                                         columnNumber: 37
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/groups/[id]/events/page.jsx",
-                                lineNumber: 159,
+                                lineNumber: 174,
                                 columnNumber: 33
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -896,7 +926,7 @@ function EventsPage() {
                                         children: "💬 Join Chat"
                                     }, void 0, false, {
                                         fileName: "[project]/app/groups/[id]/events/page.jsx",
-                                        lineNumber: 167,
+                                        lineNumber: 182,
                                         columnNumber: 37
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -928,7 +958,7 @@ function EventsPage() {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/groups/[id]/events/page.jsx",
-                                        lineNumber: 187,
+                                        lineNumber: 202,
                                         columnNumber: 37
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -956,13 +986,13 @@ function EventsPage() {
                                         children: "🔚 End Event"
                                     }, void 0, false, {
                                         fileName: "[project]/app/groups/[id]/events/page.jsx",
-                                        lineNumber: 207,
+                                        lineNumber: 222,
                                         columnNumber: 37
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/groups/[id]/events/page.jsx",
-                                lineNumber: 166,
+                                lineNumber: 181,
                                 columnNumber: 33
                             }, this),
                             summaries[event._id] && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -986,7 +1016,7 @@ function EventsPage() {
                                         children: "Summary"
                                     }, void 0, false, {
                                         fileName: "[project]/app/groups/[id]/events/page.jsx",
-                                        lineNumber: 237,
+                                        lineNumber: 252,
                                         columnNumber: 41
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -999,25 +1029,25 @@ function EventsPage() {
                                         children: summaries[event._id]
                                     }, void 0, false, {
                                         fileName: "[project]/app/groups/[id]/events/page.jsx",
-                                        lineNumber: 240,
+                                        lineNumber: 255,
                                         columnNumber: 41
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/groups/[id]/events/page.jsx",
-                                lineNumber: 230,
+                                lineNumber: 245,
                                 columnNumber: 37
                             }, this)
                         ]
                     }, event._id, true, {
                         fileName: "[project]/app/groups/[id]/events/page.jsx",
-                        lineNumber: 126,
+                        lineNumber: 141,
                         columnNumber: 29
                     }, this);
                 })
             }, void 0, false, {
                 fileName: "[project]/app/groups/[id]/events/page.jsx",
-                lineNumber: 123,
+                lineNumber: 138,
                 columnNumber: 17
             }, this),
             showCreate && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$CreateEventModal$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -1032,7 +1062,7 @@ function EventsPage() {
                 }
             }, void 0, false, {
                 fileName: "[project]/app/groups/[id]/events/page.jsx",
-                lineNumber: 253,
+                lineNumber: 268,
                 columnNumber: 17
             }, this)
         ]

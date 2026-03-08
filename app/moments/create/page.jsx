@@ -79,7 +79,7 @@ export default function CreateMomentPage() {
             });
             const data = await res.json();
             if (!res.ok) { setError(data.error || 'Failed to post moment'); return; }
-            router.push(`/groups/${groupId}`);
+            router.push(`/groups/${groupId}/chat`);
         } catch (err) {
             setError(err.message || 'Something went wrong');
         } finally {
@@ -94,7 +94,7 @@ export default function CreateMomentPage() {
     return (
         <div>
             {/* Back link */}
-            <Link href={groupId ? `/groups/${groupId}` : '/dashboard'} style={{
+            <Link href={groupId ? `/groups/${groupId}/chat` : '/dashboard'} style={{
                 display: 'inline-flex', alignItems: 'center', gap: '0.35rem',
                 color: 'var(--fb-text-secondary)', textDecoration: 'none',
                 fontSize: '0.9375rem', fontWeight: '500', marginBottom: '1rem',

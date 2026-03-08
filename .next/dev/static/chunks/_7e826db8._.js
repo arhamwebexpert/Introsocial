@@ -491,6 +491,7 @@ function ChatPage() {
     const [activeThread, setActiveThread] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const [replies, setReplies] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])({});
     const [promoteTarget, setPromoteTarget] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
+    const [replyToMessage, setReplyToMessage] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null); // For inline WhatsApp-style replies
     const bottomRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "ChatPage.useEffect": ()=>{
@@ -541,7 +542,8 @@ function ChatPage() {
                 },
                 body: JSON.stringify({
                     groupId,
-                    text: text.trim()
+                    text: text.trim(),
+                    replyTo: replyToMessage ? replyToMessage._id : undefined
                 })
             });
             const data = await res.json();
@@ -551,6 +553,7 @@ function ChatPage() {
                         data.message
                     ]);
                 setText('');
+                setReplyToMessage(null);
             }
         } catch  {} finally{
             setSending(false);
@@ -623,613 +626,859 @@ function ChatPage() {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         style: {
             display: 'flex',
-            flexDirection: 'column',
-            height: 'calc(100vh - 56px)',
-            maxWidth: '100%',
-            margin: '0 auto',
-            background: '#0a0e14'
+            height: '100vh',
+            width: '100%',
+            background: '#0a0e14',
+            overflow: 'hidden'
         },
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 style: {
-                    background: '#1c1e22',
-                    padding: '0.75rem 1rem',
                     display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    flexShrink: 0,
-                    borderBottom: '1px solid #2a2f38',
-                    boxShadow: '0 1px 2px rgba(0,0,0,0.3)'
+                    flexDirection: 'column',
+                    flex: 1,
+                    minWidth: 0,
+                    transition: 'all 0.3s'
                 },
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         style: {
+                            background: '#1c1e22',
+                            padding: '0.75rem 1rem',
                             display: 'flex',
                             alignItems: 'center',
-                            gap: '0.75rem'
+                            justifyContent: 'space-between',
+                            flexShrink: 0,
+                            borderBottom: '1px solid #2a2f38',
+                            boxShadow: '0 1px 2px rgba(0,0,0,0.3)'
                         },
                         children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                                href: `/groups/${groupId}`,
-                                style: {
-                                    color: 'var(--fb-text-secondary)',
-                                    textDecoration: 'none',
-                                    fontSize: '1.5rem',
-                                    lineHeight: 1,
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    padding: '0.25rem'
-                                },
-                                onMouseEnter: (e)=>e.currentTarget.style.color = '#1877f2',
-                                onMouseLeave: (e)=>e.currentTarget.style.color = 'var(--fb-text-secondary)',
-                                children: "←"
-                            }, void 0, false, {
-                                fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                                lineNumber: 138,
-                                columnNumber: 21
-                            }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 style: {
-                                    width: '40px',
-                                    height: '40px',
-                                    borderRadius: '50%',
-                                    background: 'linear-gradient(135deg, #1877f2 0%, #0d5dbf 100%)',
                                     display: 'flex',
                                     alignItems: 'center',
-                                    justifyContent: 'center',
-                                    fontSize: '1rem',
-                                    fontWeight: '700',
-                                    color: '#fff',
-                                    flexShrink: 0
+                                    gap: '0.75rem'
                                 },
-                                children: "💬"
-                            }, void 0, false, {
-                                fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                                lineNumber: 152,
-                                columnNumber: 21
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                                        href: "/dashboard",
                                         style: {
-                                            margin: 0,
-                                            fontSize: '1.125rem',
-                                            fontWeight: '600',
-                                            color: '#e4e6eb'
+                                            color: 'var(--fb-text-secondary)',
+                                            textDecoration: 'none',
+                                            fontSize: '1.5rem',
+                                            lineHeight: 1,
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            padding: '0.25rem'
                                         },
-                                        children: "Group Chat"
+                                        onMouseEnter: (e)=>e.currentTarget.style.color = '#1877f2',
+                                        onMouseLeave: (e)=>e.currentTarget.style.color = 'var(--fb-text-secondary)',
+                                        children: "←"
                                     }, void 0, false, {
                                         fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                                        lineNumber: 168,
+                                        lineNumber: 145,
                                         columnNumber: 25
                                     }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         style: {
-                                            margin: 0,
-                                            fontSize: '0.75rem',
-                                            color: '#8a8d91'
+                                            width: '40px',
+                                            height: '40px',
+                                            borderRadius: '50%',
+                                            background: 'linear-gradient(135deg, #1877f2 0%, #0d5dbf 100%)',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            fontSize: '1rem',
+                                            fontWeight: '700',
+                                            color: '#fff',
+                                            flexShrink: 0
                                         },
-                                        children: "Tap message for thread"
+                                        children: "💬"
                                     }, void 0, false, {
                                         fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                                        lineNumber: 169,
+                                        lineNumber: 159,
+                                        columnNumber: 25
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
+                                                style: {
+                                                    margin: 0,
+                                                    fontSize: '1.125rem',
+                                                    fontWeight: '600',
+                                                    color: '#e4e6eb'
+                                                },
+                                                children: "Group Chat"
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/groups/[id]/chat/page.jsx",
+                                                lineNumber: 175,
+                                                columnNumber: 29
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                style: {
+                                                    margin: 0,
+                                                    fontSize: '0.75rem',
+                                                    color: '#8a8d91'
+                                                },
+                                                children: "Tap message for thread"
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/groups/[id]/chat/page.jsx",
+                                                lineNumber: 176,
+                                                columnNumber: 29
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/app/groups/[id]/chat/page.jsx",
+                                        lineNumber: 174,
                                         columnNumber: 25
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                                lineNumber: 167,
+                                lineNumber: 144,
+                                columnNumber: 21
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                style: {
+                                    display: 'flex',
+                                    gap: '0.5rem'
+                                },
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                                        href: `/groups/${groupId}/moments`,
+                                        style: {
+                                            fontSize: '0.875rem',
+                                            background: '#2a2f38',
+                                            color: '#8a8d91',
+                                            padding: '0.5rem 0.875rem',
+                                            borderRadius: '20px',
+                                            textDecoration: 'none',
+                                            fontWeight: '600',
+                                            border: '1px solid #3a3f48',
+                                            transition: 'all 0.2s'
+                                        },
+                                        onMouseEnter: (e)=>{
+                                            e.currentTarget.style.background = '#3a3f48';
+                                            e.currentTarget.style.color = '#e4e6eb';
+                                        },
+                                        onMouseLeave: (e)=>{
+                                            e.currentTarget.style.background = '#2a2f38';
+                                            e.currentTarget.style.color = '#8a8d91';
+                                        },
+                                        children: "📸 Moments"
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/groups/[id]/chat/page.jsx",
+                                        lineNumber: 180,
+                                        columnNumber: 25
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                                        href: `/groups/${groupId}/events`,
+                                        style: {
+                                            fontSize: '0.875rem',
+                                            background: '#2a2f38',
+                                            color: '#8a8d91',
+                                            padding: '0.5rem 0.875rem',
+                                            borderRadius: '20px',
+                                            textDecoration: 'none',
+                                            fontWeight: '600',
+                                            border: '1px solid #3a3f48',
+                                            transition: 'all 0.2s'
+                                        },
+                                        onMouseEnter: (e)=>{
+                                            e.currentTarget.style.background = '#3a3f48';
+                                            e.currentTarget.style.color = '#e4e6eb';
+                                        },
+                                        onMouseLeave: (e)=>{
+                                            e.currentTarget.style.background = '#2a2f38';
+                                            e.currentTarget.style.color = '#8a8d91';
+                                        },
+                                        children: "📅 Events"
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/groups/[id]/chat/page.jsx",
+                                        lineNumber: 198,
+                                        columnNumber: 25
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/app/groups/[id]/chat/page.jsx",
+                                lineNumber: 179,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                        lineNumber: 137,
+                        lineNumber: 134,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         style: {
-                            display: 'flex',
-                            gap: '0.5rem'
+                            flex: 1,
+                            overflowY: 'auto',
+                            padding: '1rem',
+                            background: 'linear-gradient(to bottom, #0a0e14 0%, #0d1117 100%)',
+                            backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(24, 119, 242, 0.03) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(24, 119, 242, 0.03) 0%, transparent 50%)'
                         },
                         children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                                href: "/moments",
+                            Object.entries(grouped).map(([date, msgs])=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            style: {
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
+                                                margin: '1.5rem 0 1rem'
+                                            },
+                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                style: {
+                                                    background: '#1c1e22',
+                                                    padding: '0.375rem 0.875rem',
+                                                    borderRadius: '8px',
+                                                    fontSize: '0.75rem',
+                                                    color: '#8a8d91',
+                                                    fontWeight: '500',
+                                                    boxShadow: '0 1px 2px rgba(0,0,0,0.3)'
+                                                },
+                                                children: formatDate(msgs[0].createdAt)
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/groups/[id]/chat/page.jsx",
+                                                lineNumber: 231,
+                                                columnNumber: 33
+                                            }, this)
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/groups/[id]/chat/page.jsx",
+                                            lineNumber: 230,
+                                            columnNumber: 29
+                                        }, this),
+                                        msgs.map((msg)=>{
+                                            const isOwn = msg.userId?._id === user?.userId || msg.userId?.toString() === user?.userId;
+                                            const isThreadOpen = activeThread === msg._id;
+                                            return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "chat-msg-group",
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    style: {
+                                                        display: 'flex',
+                                                        alignItems: 'flex-start',
+                                                        gap: '0.5rem',
+                                                        flexDirection: isOwn ? 'row-reverse' : 'row',
+                                                        marginBottom: '0.5rem',
+                                                        maxWidth: '85%',
+                                                        marginLeft: isOwn ? 'auto' : '0',
+                                                        marginRight: isOwn ? '0' : 'auto'
+                                                    },
+                                                    children: [
+                                                        !isOwn && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            style: {
+                                                                width: '32px',
+                                                                height: '32px',
+                                                                borderRadius: '50%',
+                                                                background: 'linear-gradient(135deg, #1877f2 0%, #0d5dbf 100%)',
+                                                                display: 'flex',
+                                                                alignItems: 'center',
+                                                                justifyContent: 'center',
+                                                                fontSize: '0.875rem',
+                                                                fontWeight: '700',
+                                                                color: '#fff',
+                                                                flexShrink: 0,
+                                                                boxShadow: '0 2px 4px rgba(0,0,0,0.3)'
+                                                            },
+                                                            children: msg.userId?.name?.[0]?.toUpperCase() || '?'
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/app/groups/[id]/chat/page.jsx",
+                                                            lineNumber: 263,
+                                                            columnNumber: 49
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            style: {
+                                                                display: 'flex',
+                                                                flexDirection: 'column',
+                                                                alignItems: isOwn ? 'flex-end' : 'flex-start',
+                                                                flex: 1,
+                                                                minWidth: 0
+                                                            },
+                                                            children: [
+                                                                !isOwn && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                    style: {
+                                                                        fontSize: '0.8125rem',
+                                                                        fontWeight: '600',
+                                                                        color: '#1877f2',
+                                                                        marginBottom: '0.25rem',
+                                                                        marginLeft: '0.5rem'
+                                                                    },
+                                                                    children: msg.userId?.name || 'Unknown User'
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/app/groups/[id]/chat/page.jsx",
+                                                                    lineNumber: 290,
+                                                                    columnNumber: 53
+                                                                }, this),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                    style: {
+                                                                        background: isOwn ? 'linear-gradient(135deg, #1877f2 0%, #0d5dbf 100%)' : '#1c1e22',
+                                                                        color: '#fff',
+                                                                        padding: '0.375rem 0.375rem 0.625rem 0.375rem',
+                                                                        borderRadius: isOwn ? '16px 16px 4px 16px' : '16px 16px 16px 4px',
+                                                                        fontSize: '0.9375rem',
+                                                                        lineHeight: '1.4',
+                                                                        position: 'relative',
+                                                                        boxShadow: isOwn ? '0 2px 8px rgba(24, 119, 242, 0.4)' : '0 2px 4px rgba(0,0,0,0.3)',
+                                                                        border: msg.promotedToEvent ? '2px solid #25d366' : 'none',
+                                                                        maxWidth: '100%',
+                                                                        minWidth: '120px'
+                                                                    },
+                                                                    children: [
+                                                                        msg.replyTo && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                            style: {
+                                                                                background: 'rgba(0,0,0,0.15)',
+                                                                                borderRadius: '8px',
+                                                                                padding: '0.5rem',
+                                                                                marginBottom: '0.375rem',
+                                                                                borderLeft: '4px solid',
+                                                                                borderLeftColor: isOwn ? '#fff' : '#1877f2',
+                                                                                fontSize: '0.8125rem'
+                                                                            },
+                                                                            children: [
+                                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                                    style: {
+                                                                                        fontWeight: '700',
+                                                                                        color: isOwn ? '#fff' : '#1877f2',
+                                                                                        marginBottom: '0.125rem'
+                                                                                    },
+                                                                                    children: msg.replyTo.userId?.name || 'Someone'
+                                                                                }, void 0, false, {
+                                                                                    fileName: "[project]/app/groups/[id]/chat/page.jsx",
+                                                                                    lineNumber: 332,
+                                                                                    columnNumber: 61
+                                                                                }, this),
+                                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                                    style: {
+                                                                                        opacity: 0.8,
+                                                                                        overflow: 'hidden',
+                                                                                        textOverflow: 'ellipsis',
+                                                                                        whiteSpace: 'nowrap'
+                                                                                    },
+                                                                                    children: msg.replyTo.text
+                                                                                }, void 0, false, {
+                                                                                    fileName: "[project]/app/groups/[id]/chat/page.jsx",
+                                                                                    lineNumber: 339,
+                                                                                    columnNumber: 61
+                                                                                }, this)
+                                                                            ]
+                                                                        }, void 0, true, {
+                                                                            fileName: "[project]/app/groups/[id]/chat/page.jsx",
+                                                                            lineNumber: 323,
+                                                                            columnNumber: 57
+                                                                        }, this),
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                            style: {
+                                                                                padding: '0 0.5rem',
+                                                                                wordBreak: 'break-word'
+                                                                            },
+                                                                            children: [
+                                                                                msg.text,
+                                                                                msg.promotedToEvent && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                                    style: {
+                                                                                        marginLeft: '6px',
+                                                                                        fontSize: '0.75rem',
+                                                                                        color: '#25d366',
+                                                                                        fontWeight: '600'
+                                                                                    },
+                                                                                    children: "📅 Event"
+                                                                                }, void 0, false, {
+                                                                                    fileName: "[project]/app/groups/[id]/chat/page.jsx",
+                                                                                    lineNumber: 353,
+                                                                                    columnNumber: 61
+                                                                                }, this)
+                                                                            ]
+                                                                        }, void 0, true, {
+                                                                            fileName: "[project]/app/groups/[id]/chat/page.jsx",
+                                                                            lineNumber: 350,
+                                                                            columnNumber: 53
+                                                                        }, this),
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                            style: {
+                                                                                fontSize: '0.6875rem',
+                                                                                color: isOwn ? 'rgba(255,255,255,0.7)' : '#8a8d91',
+                                                                                marginTop: '0.25rem',
+                                                                                textAlign: 'right',
+                                                                                paddingRight: '0.5rem'
+                                                                            },
+                                                                            children: formatTime(msg.createdAt)
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/app/groups/[id]/chat/page.jsx",
+                                                                            lineNumber: 365,
+                                                                            columnNumber: 53
+                                                                        }, this)
+                                                                    ]
+                                                                }, void 0, true, {
+                                                                    fileName: "[project]/app/groups/[id]/chat/page.jsx",
+                                                                    lineNumber: 302,
+                                                                    columnNumber: 49
+                                                                }, this),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                    className: "chat-actions",
+                                                                    style: {
+                                                                        display: 'flex',
+                                                                        alignItems: 'center',
+                                                                        gap: '0.5rem',
+                                                                        marginTop: '0.25rem',
+                                                                        opacity: 0,
+                                                                        transition: 'opacity 0.2s'
+                                                                    },
+                                                                    children: [
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                                            onClick: ()=>setReplyToMessage(msg),
+                                                                            style: {
+                                                                                background: '#1c1e22',
+                                                                                border: '1px solid #2a2f38',
+                                                                                cursor: 'pointer',
+                                                                                fontSize: '0.75rem',
+                                                                                color: '#8a8d91',
+                                                                                fontFamily: 'inherit',
+                                                                                padding: '0.25rem 0.625rem',
+                                                                                borderRadius: '12px',
+                                                                                transition: 'all 0.2s',
+                                                                                fontWeight: '500'
+                                                                            },
+                                                                            onMouseEnter: (e)=>{
+                                                                                e.currentTarget.style.background = '#2a2f38';
+                                                                                e.currentTarget.style.color = '#1877f2';
+                                                                            },
+                                                                            onMouseLeave: (e)=>{
+                                                                                e.currentTarget.style.background = '#1c1e22';
+                                                                                e.currentTarget.style.color = '#8a8d91';
+                                                                            },
+                                                                            children: "↪ Reply"
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/app/groups/[id]/chat/page.jsx",
+                                                                            lineNumber: 385,
+                                                                            columnNumber: 53
+                                                                        }, this),
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                                            onClick: ()=>setActiveThread(msg._id),
+                                                                            style: {
+                                                                                background: '#1c1e22',
+                                                                                border: '1px solid #2a2f38',
+                                                                                cursor: 'pointer',
+                                                                                fontSize: '0.75rem',
+                                                                                color: '#8a8d91',
+                                                                                fontFamily: 'inherit',
+                                                                                padding: '0.25rem 0.625rem',
+                                                                                borderRadius: '12px',
+                                                                                transition: 'all 0.2s',
+                                                                                fontWeight: '500'
+                                                                            },
+                                                                            onMouseEnter: (e)=>{
+                                                                                e.currentTarget.style.background = '#2a2f38';
+                                                                                e.currentTarget.style.color = '#1877f2';
+                                                                            },
+                                                                            onMouseLeave: (e)=>{
+                                                                                e.currentTarget.style.background = '#1c1e22';
+                                                                                e.currentTarget.style.color = '#8a8d91';
+                                                                            },
+                                                                            children: [
+                                                                                "💬 ",
+                                                                                msg.replyCount > 0 ? `${msg.replyCount} ` : '',
+                                                                                "Thread"
+                                                                            ]
+                                                                        }, void 0, true, {
+                                                                            fileName: "[project]/app/groups/[id]/chat/page.jsx",
+                                                                            lineNumber: 405,
+                                                                            columnNumber: 53
+                                                                        }, this),
+                                                                        !msg.promotedToEvent && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                                            onClick: ()=>setPromoteTarget(msg),
+                                                                            style: {
+                                                                                background: '#1c1e22',
+                                                                                border: '1px solid #2a2f38',
+                                                                                cursor: 'pointer',
+                                                                                fontSize: '0.75rem',
+                                                                                color: '#8a8d91',
+                                                                                fontFamily: 'inherit',
+                                                                                padding: '0.25rem 0.625rem',
+                                                                                borderRadius: '12px',
+                                                                                transition: 'all 0.2s',
+                                                                                fontWeight: '500'
+                                                                            },
+                                                                            onMouseEnter: (e)=>{
+                                                                                e.currentTarget.style.background = '#2a2f38';
+                                                                                e.currentTarget.style.color = '#25d366';
+                                                                            },
+                                                                            onMouseLeave: (e)=>{
+                                                                                e.currentTarget.style.background = '#1c1e22';
+                                                                                e.currentTarget.style.color = '#8a8d91';
+                                                                            },
+                                                                            children: "📅 Event"
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/app/groups/[id]/chat/page.jsx",
+                                                                            lineNumber: 426,
+                                                                            columnNumber: 57
+                                                                        }, this)
+                                                                    ]
+                                                                }, void 0, true, {
+                                                                    fileName: "[project]/app/groups/[id]/chat/page.jsx",
+                                                                    lineNumber: 377,
+                                                                    columnNumber: 49
+                                                                }, this)
+                                                            ]
+                                                        }, void 0, true, {
+                                                            fileName: "[project]/app/groups/[id]/chat/page.jsx",
+                                                            lineNumber: 281,
+                                                            columnNumber: 45
+                                                        }, this)
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/app/groups/[id]/chat/page.jsx",
+                                                    lineNumber: 251,
+                                                    columnNumber: 41
+                                                }, this)
+                                            }, msg._id, false, {
+                                                fileName: "[project]/app/groups/[id]/chat/page.jsx",
+                                                lineNumber: 249,
+                                                columnNumber: 37
+                                            }, this);
+                                        })
+                                    ]
+                                }, date, true, {
+                                    fileName: "[project]/app/groups/[id]/chat/page.jsx",
+                                    lineNumber: 228,
+                                    columnNumber: 25
+                                }, this)),
+                            messages.length === 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 style: {
-                                    fontSize: '0.875rem',
-                                    background: '#2a2f38',
-                                    color: '#8a8d91',
-                                    padding: '0.5rem 0.875rem',
-                                    borderRadius: '20px',
-                                    textDecoration: 'none',
-                                    fontWeight: '600',
-                                    border: '1px solid #3a3f48',
-                                    transition: 'all 0.2s'
+                                    textAlign: 'center',
+                                    padding: '5rem 1rem'
                                 },
-                                onMouseEnter: (e)=>{
-                                    e.currentTarget.style.background = '#3a3f48';
-                                    e.currentTarget.style.color = '#e4e6eb';
-                                },
-                                onMouseLeave: (e)=>{
-                                    e.currentTarget.style.background = '#2a2f38';
-                                    e.currentTarget.style.color = '#8a8d91';
-                                },
-                                children: "📸 Moments"
-                            }, void 0, false, {
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                        style: {
+                                            fontSize: '4rem',
+                                            marginBottom: '0.75rem',
+                                            opacity: 0.3
+                                        },
+                                        children: "💬"
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/groups/[id]/chat/page.jsx",
+                                        lineNumber: 458,
+                                        columnNumber: 29
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                        style: {
+                                            color: '#8a8d91',
+                                            margin: 0,
+                                            fontSize: '0.9375rem'
+                                        },
+                                        children: "No messages yet. Start the conversation!"
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/groups/[id]/chat/page.jsx",
+                                        lineNumber: 459,
+                                        columnNumber: 29
+                                    }, this)
+                                ]
+                            }, void 0, true, {
                                 fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                                lineNumber: 173,
-                                columnNumber: 21
+                                lineNumber: 457,
+                                columnNumber: 25
                             }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                                href: `/groups/${groupId}/events`,
-                                style: {
-                                    fontSize: '0.875rem',
-                                    background: '#2a2f38',
-                                    color: '#8a8d91',
-                                    padding: '0.5rem 0.875rem',
-                                    borderRadius: '20px',
-                                    textDecoration: 'none',
-                                    fontWeight: '600',
-                                    border: '1px solid #3a3f48',
-                                    transition: 'all 0.2s'
-                                },
-                                onMouseEnter: (e)=>{
-                                    e.currentTarget.style.background = '#3a3f48';
-                                    e.currentTarget.style.color = '#e4e6eb';
-                                },
-                                onMouseLeave: (e)=>{
-                                    e.currentTarget.style.background = '#2a2f38';
-                                    e.currentTarget.style.color = '#8a8d91';
-                                },
-                                children: "📅 Events"
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                ref: bottomRef
                             }, void 0, false, {
                                 fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                                lineNumber: 191,
+                                lineNumber: 463,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                        lineNumber: 172,
+                        lineNumber: 220,
                         columnNumber: 17
-                    }, this)
-                ]
-            }, void 0, true, {
-                fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                lineNumber: 127,
-                columnNumber: 13
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                style: {
-                    flex: 1,
-                    overflowY: 'auto',
-                    padding: '1rem',
-                    background: 'linear-gradient(to bottom, #0a0e14 0%, #0d1117 100%)',
-                    backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(24, 119, 242, 0.03) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(24, 119, 242, 0.03) 0%, transparent 50%)'
-                },
-                children: [
-                    Object.entries(grouped).map(([date, msgs])=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    style: {
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                        margin: '1.5rem 0 1rem'
-                                    },
-                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        style: {
+                            background: '#1c1e22',
+                            padding: '0.875rem 1rem',
+                            flexShrink: 0,
+                            borderTop: '1px solid #2a2f38',
+                            boxShadow: '0 -2px 8px rgba(0,0,0,0.3)',
+                            display: 'flex',
+                            flexDirection: 'column'
+                        },
+                        children: [
+                            replyToMessage && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                style: {
+                                    background: '#2a2f38',
+                                    borderLeft: '4px solid #1877f2',
+                                    borderRadius: '4px 8px 8px 4px',
+                                    padding: '0.5rem 0.75rem',
+                                    marginBottom: '0.5rem',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'space-between'
+                                },
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         style: {
-                                            background: '#1c1e22',
-                                            padding: '0.375rem 0.875rem',
-                                            borderRadius: '8px',
-                                            fontSize: '0.75rem',
-                                            color: '#8a8d91',
-                                            fontWeight: '500',
-                                            boxShadow: '0 1px 2px rgba(0,0,0,0.3)'
+                                            minWidth: 0,
+                                            overflow: 'hidden'
                                         },
-                                        children: formatDate(msgs[0].createdAt)
-                                    }, void 0, false, {
-                                        fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                                        lineNumber: 224,
-                                        columnNumber: 29
-                                    }, this)
-                                }, void 0, false, {
-                                    fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                                    lineNumber: 223,
-                                    columnNumber: 25
-                                }, this),
-                                msgs.map((msg)=>{
-                                    const isOwn = msg.userId?._id === user?.userId || msg.userId?.toString() === user?.userId;
-                                    const isThreadOpen = activeThread === msg._id;
-                                    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "chat-msg-group",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 style: {
-                                                    display: 'flex',
-                                                    alignItems: 'flex-start',
-                                                    gap: '0.5rem',
-                                                    flexDirection: isOwn ? 'row-reverse' : 'row',
-                                                    marginBottom: '0.5rem',
-                                                    maxWidth: '85%',
-                                                    marginLeft: isOwn ? 'auto' : '0',
-                                                    marginRight: isOwn ? '0' : 'auto'
+                                                    fontSize: '0.75rem',
+                                                    fontWeight: '700',
+                                                    color: '#1877f2',
+                                                    marginBottom: '0.25rem'
                                                 },
                                                 children: [
-                                                    !isOwn && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        style: {
-                                                            width: '32px',
-                                                            height: '32px',
-                                                            borderRadius: '50%',
-                                                            background: 'linear-gradient(135deg, #1877f2 0%, #0d5dbf 100%)',
-                                                            display: 'flex',
-                                                            alignItems: 'center',
-                                                            justifyContent: 'center',
-                                                            fontSize: '0.875rem',
-                                                            fontWeight: '700',
-                                                            color: '#fff',
-                                                            flexShrink: 0,
-                                                            boxShadow: '0 2px 4px rgba(0,0,0,0.3)'
-                                                        },
-                                                        children: msg.userId?.name?.[0]?.toUpperCase() || '?'
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                                                        lineNumber: 256,
-                                                        columnNumber: 45
-                                                    }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        style: {
-                                                            display: 'flex',
-                                                            flexDirection: 'column',
-                                                            alignItems: isOwn ? 'flex-end' : 'flex-start',
-                                                            flex: 1,
-                                                            minWidth: 0
-                                                        },
-                                                        children: [
-                                                            !isOwn && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                style: {
-                                                                    fontSize: '0.8125rem',
-                                                                    fontWeight: '600',
-                                                                    color: '#1877f2',
-                                                                    marginBottom: '0.25rem',
-                                                                    marginLeft: '0.5rem'
-                                                                },
-                                                                children: msg.userId?.name || 'Unknown User'
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                                                                lineNumber: 283,
-                                                                columnNumber: 49
-                                                            }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                style: {
-                                                                    background: isOwn ? 'linear-gradient(135deg, #1877f2 0%, #0d5dbf 100%)' : '#1c1e22',
-                                                                    color: '#fff',
-                                                                    padding: '0.625rem 0.875rem',
-                                                                    borderRadius: isOwn ? '16px 16px 4px 16px' : '16px 16px 16px 4px',
-                                                                    fontSize: '0.9375rem',
-                                                                    lineHeight: '1.4',
-                                                                    position: 'relative',
-                                                                    wordBreak: 'break-word',
-                                                                    boxShadow: isOwn ? '0 2px 8px rgba(24, 119, 242, 0.4)' : '0 2px 4px rgba(0,0,0,0.3)',
-                                                                    border: msg.promotedToEvent ? '2px solid #25d366' : 'none',
-                                                                    maxWidth: '100%'
-                                                                },
-                                                                children: [
-                                                                    msg.text,
-                                                                    msg.promotedToEvent && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                        style: {
-                                                                            marginLeft: '6px',
-                                                                            fontSize: '0.75rem',
-                                                                            color: '#25d366',
-                                                                            fontWeight: '600'
-                                                                        },
-                                                                        children: "📅 Event"
-                                                                    }, void 0, false, {
-                                                                        fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                                                                        lineNumber: 316,
-                                                                        columnNumber: 53
-                                                                    }, this),
-                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                        style: {
-                                                                            fontSize: '0.6875rem',
-                                                                            color: isOwn ? 'rgba(255,255,255,0.7)' : '#8a8d91',
-                                                                            marginTop: '0.25rem',
-                                                                            textAlign: 'right'
-                                                                        },
-                                                                        children: formatTime(msg.createdAt)
-                                                                    }, void 0, false, {
-                                                                        fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                                                                        lineNumber: 327,
-                                                                        columnNumber: 49
-                                                                    }, this)
-                                                                ]
-                                                            }, void 0, true, {
-                                                                fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                                                                lineNumber: 295,
-                                                                columnNumber: 45
-                                                            }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                className: "chat-actions",
-                                                                style: {
-                                                                    display: 'flex',
-                                                                    alignItems: 'center',
-                                                                    gap: '0.5rem',
-                                                                    marginTop: '0.25rem',
-                                                                    opacity: 0,
-                                                                    transition: 'opacity 0.2s'
-                                                                },
-                                                                children: [
-                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                                        onClick: ()=>loadReplies(msg._id),
-                                                                        style: {
-                                                                            background: '#1c1e22',
-                                                                            border: '1px solid #2a2f38',
-                                                                            cursor: 'pointer',
-                                                                            fontSize: '0.75rem',
-                                                                            color: '#8a8d91',
-                                                                            fontFamily: 'inherit',
-                                                                            padding: '0.25rem 0.625rem',
-                                                                            borderRadius: '12px',
-                                                                            transition: 'all 0.2s',
-                                                                            fontWeight: '500'
-                                                                        },
-                                                                        onMouseEnter: (e)=>{
-                                                                            e.currentTarget.style.background = '#2a2f38';
-                                                                            e.currentTarget.style.color = '#1877f2';
-                                                                        },
-                                                                        onMouseLeave: (e)=>{
-                                                                            e.currentTarget.style.background = '#1c1e22';
-                                                                            e.currentTarget.style.color = '#8a8d91';
-                                                                        },
-                                                                        children: [
-                                                                            "💬 ",
-                                                                            msg.replyCount > 0 ? `${msg.replyCount}` : 'Reply'
-                                                                        ]
-                                                                    }, void 0, true, {
-                                                                        fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                                                                        lineNumber: 346,
-                                                                        columnNumber: 49
-                                                                    }, this),
-                                                                    !msg.promotedToEvent && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                                        onClick: ()=>setPromoteTarget(msg),
-                                                                        style: {
-                                                                            background: '#1c1e22',
-                                                                            border: '1px solid #2a2f38',
-                                                                            cursor: 'pointer',
-                                                                            fontSize: '0.75rem',
-                                                                            color: '#8a8d91',
-                                                                            fontFamily: 'inherit',
-                                                                            padding: '0.25rem 0.625rem',
-                                                                            borderRadius: '12px',
-                                                                            transition: 'all 0.2s',
-                                                                            fontWeight: '500'
-                                                                        },
-                                                                        onMouseEnter: (e)=>{
-                                                                            e.currentTarget.style.background = '#2a2f38';
-                                                                            e.currentTarget.style.color = '#25d366';
-                                                                        },
-                                                                        onMouseLeave: (e)=>{
-                                                                            e.currentTarget.style.background = '#1c1e22';
-                                                                            e.currentTarget.style.color = '#8a8d91';
-                                                                        },
-                                                                        children: "📅 Event"
-                                                                    }, void 0, false, {
-                                                                        fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                                                                        lineNumber: 367,
-                                                                        columnNumber: 53
-                                                                    }, this)
-                                                                ]
-                                                            }, void 0, true, {
-                                                                fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                                                                lineNumber: 338,
-                                                                columnNumber: 45
-                                                            }, this)
-                                                        ]
-                                                    }, void 0, true, {
-                                                        fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                                                        lineNumber: 274,
-                                                        columnNumber: 41
-                                                    }, this)
+                                                    "Replying to ",
+                                                    replyToMessage.userId?.name
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                                                lineNumber: 244,
-                                                columnNumber: 37
+                                                lineNumber: 488,
+                                                columnNumber: 33
                                             }, this),
-                                            isThreadOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ThreadPanel, {
-                                                messageId: msg._id,
-                                                replies: replies[msg._id] || [],
-                                                onReply: sendReply,
-                                                currentUserId: user?.userId
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                style: {
+                                                    fontSize: '0.8125rem',
+                                                    color: '#8a8d91',
+                                                    whiteSpace: 'nowrap',
+                                                    textOverflow: 'ellipsis',
+                                                    overflow: 'hidden'
+                                                },
+                                                children: replyToMessage.text
                                             }, void 0, false, {
                                                 fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                                                lineNumber: 393,
-                                                columnNumber: 41
+                                                lineNumber: 491,
+                                                columnNumber: 33
                                             }, this)
                                         ]
-                                    }, msg._id, true, {
+                                    }, void 0, true, {
                                         fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                                        lineNumber: 242,
-                                        columnNumber: 33
-                                    }, this);
-                                })
-                            ]
-                        }, date, true, {
-                            fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                            lineNumber: 221,
-                            columnNumber: 21
-                        }, this)),
-                    messages.length === 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        style: {
-                            textAlign: 'center',
-                            padding: '5rem 1rem'
-                        },
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                style: {
-                                    fontSize: '4rem',
-                                    marginBottom: '0.75rem',
-                                    opacity: 0.3
-                                },
-                                children: "💬"
-                            }, void 0, false, {
+                                        lineNumber: 487,
+                                        columnNumber: 29
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                        type: "button",
+                                        onClick: ()=>setReplyToMessage(null),
+                                        style: {
+                                            background: 'transparent',
+                                            border: 'none',
+                                            color: '#8a8d91',
+                                            cursor: 'pointer',
+                                            padding: '0.25rem'
+                                        },
+                                        children: "✕"
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/groups/[id]/chat/page.jsx",
+                                        lineNumber: 495,
+                                        columnNumber: 29
+                                    }, this)
+                                ]
+                            }, void 0, true, {
                                 fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                                lineNumber: 408,
+                                lineNumber: 477,
                                 columnNumber: 25
                             }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
+                                onSubmit: sendMessage,
                                 style: {
-                                    color: '#8a8d91',
-                                    margin: 0,
-                                    fontSize: '0.9375rem'
+                                    display: 'flex',
+                                    gap: '0.625rem',
+                                    alignItems: 'center'
                                 },
-                                children: "No messages yet. Start the conversation!"
-                            }, void 0, false, {
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                        type: "text",
+                                        placeholder: "Type a message...",
+                                        value: text,
+                                        onChange: (e)=>setText(e.target.value),
+                                        style: {
+                                            flex: 1,
+                                            borderRadius: '24px',
+                                            margin: 0,
+                                            padding: '0.75rem 1.125rem',
+                                            fontSize: '0.9375rem',
+                                            background: '#2a2f38',
+                                            border: '1px solid #3a3f48',
+                                            color: '#e4e6eb',
+                                            outline: 'none',
+                                            transition: 'all 0.2s'
+                                        },
+                                        onFocus: (e)=>{
+                                            e.target.style.background = '#3a3f48';
+                                            e.target.style.borderColor = '#1877f2';
+                                        },
+                                        onBlur: (e)=>{
+                                            e.target.style.background = '#2a2f38';
+                                            e.target.style.borderColor = '#3a3f48';
+                                        }
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/groups/[id]/chat/page.jsx",
+                                        lineNumber: 505,
+                                        columnNumber: 25
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                        type: "submit",
+                                        disabled: sending || !text.trim(),
+                                        style: {
+                                            width: '48px',
+                                            height: '48px',
+                                            padding: 0,
+                                            borderRadius: '50%',
+                                            background: text.trim() ? 'linear-gradient(135deg, #1877f2 0%, #0d5dbf 100%)' : '#2a2f38',
+                                            color: '#fff',
+                                            border: 'none',
+                                            cursor: text.trim() ? 'pointer' : 'not-allowed',
+                                            fontSize: '1.25rem',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            transition: 'all 0.2s',
+                                            boxShadow: text.trim() ? '0 2px 8px rgba(24, 119, 242, 0.4)' : 'none',
+                                            opacity: text.trim() ? 1 : 0.5
+                                        },
+                                        onMouseEnter: (e)=>{
+                                            if (text.trim()) e.currentTarget.style.transform = 'scale(1.05)';
+                                        },
+                                        onMouseLeave: (e)=>{
+                                            e.currentTarget.style.transform = 'scale(1)';
+                                        },
+                                        children: sending ? '...' : '➤'
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/groups/[id]/chat/page.jsx",
+                                        lineNumber: 525,
+                                        columnNumber: 25
+                                    }, this)
+                                ]
+                            }, void 0, true, {
                                 fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                                lineNumber: 409,
-                                columnNumber: 25
+                                lineNumber: 504,
+                                columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                        lineNumber: 407,
-                        columnNumber: 21
+                        lineNumber: 467,
+                        columnNumber: 17
                     }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        ref: bottomRef
+                    promoteTarget && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$PromoteEventModal$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                        message: promoteTarget,
+                        groupId: groupId,
+                        onClose: ()=>setPromoteTarget(null),
+                        onPromoted: (event)=>{
+                            setMessages((prev)=>prev.map((m)=>m._id === promoteTarget._id ? {
+                                        ...m,
+                                        promotedToEvent: event
+                                    } : m));
+                            setPromoteTarget(null);
+                        }
                     }, void 0, false, {
                         fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                        lineNumber: 413,
+                        lineNumber: 555,
+                        columnNumber: 21
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("style", {
+                        children: `
+                .chat-msg-group:hover .chat-actions { opacity: 1 !important; }
+            `
+                    }, void 0, false, {
+                        fileName: "[project]/app/groups/[id]/chat/page.jsx",
+                        lineNumber: 569,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                lineNumber: 213,
+                lineNumber: 125,
                 columnNumber: 13
             }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            " ",
+            activeThread && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 style: {
-                    background: '#1c1e22',
-                    padding: '0.875rem 1rem',
-                    flexShrink: 0,
-                    borderTop: '1px solid #2a2f38',
-                    boxShadow: '0 -2px 8px rgba(0,0,0,0.3)'
+                    width: '320px',
+                    borderLeft: '1px solid #2a2f38',
+                    background: '#0a0e14',
+                    display: 'flex',
+                    flexDirection: 'column'
                 },
-                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
-                    onSubmit: sendMessage,
-                    style: {
-                        display: 'flex',
-                        gap: '0.625rem',
-                        alignItems: 'center'
-                    },
-                    children: [
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
-                            type: "text",
-                            placeholder: "Type a message...",
-                            value: text,
-                            onChange: (e)=>setText(e.target.value),
-                            style: {
-                                flex: 1,
-                                borderRadius: '24px',
-                                margin: 0,
-                                padding: '0.75rem 1.125rem',
-                                fontSize: '0.9375rem',
-                                background: '#2a2f38',
-                                border: '1px solid #3a3f48',
-                                color: '#e4e6eb',
-                                outline: 'none',
-                                transition: 'all 0.2s'
-                            },
-                            onFocus: (e)=>{
-                                e.target.style.background = '#3a3f48';
-                                e.target.style.borderColor = '#1877f2';
-                            },
-                            onBlur: (e)=>{
-                                e.target.style.background = '#2a2f38';
-                                e.target.style.borderColor = '#3a3f48';
-                            }
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        style: {
+                            background: '#1c1e22',
+                            padding: '0.875rem 1rem',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'space-between',
+                            borderBottom: '1px solid #2a2f38'
+                        },
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                                style: {
+                                    margin: 0,
+                                    fontSize: '1rem',
+                                    fontWeight: '600',
+                                    color: '#e4e6eb'
+                                },
+                                children: "Thread"
+                            }, void 0, false, {
+                                fileName: "[project]/app/groups/[id]/chat/page.jsx",
+                                lineNumber: 591,
+                                columnNumber: 25
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                onClick: ()=>setActiveThread(null),
+                                style: {
+                                    background: 'transparent',
+                                    border: 'none',
+                                    color: '#8a8d91',
+                                    cursor: 'pointer',
+                                    fontSize: '1.25rem'
+                                },
+                                children: "✕"
+                            }, void 0, false, {
+                                fileName: "[project]/app/groups/[id]/chat/page.jsx",
+                                lineNumber: 592,
+                                columnNumber: 25
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/app/groups/[id]/chat/page.jsx",
+                        lineNumber: 583,
+                        columnNumber: 21
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        style: {
+                            flex: 1,
+                            overflowY: 'auto'
+                        },
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ThreadPanel, {
+                            messageId: activeThread,
+                            replies: replies[activeThread] || [],
+                            onReply: sendReply,
+                            currentUserId: user?.userId
                         }, void 0, false, {
                             fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                            lineNumber: 425,
-                            columnNumber: 21
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                            type: "submit",
-                            disabled: sending || !text.trim(),
-                            style: {
-                                width: '48px',
-                                height: '48px',
-                                padding: 0,
-                                borderRadius: '50%',
-                                background: text.trim() ? 'linear-gradient(135deg, #1877f2 0%, #0d5dbf 100%)' : '#2a2f38',
-                                color: '#fff',
-                                border: 'none',
-                                cursor: text.trim() ? 'pointer' : 'not-allowed',
-                                fontSize: '1.25rem',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                transition: 'all 0.2s',
-                                boxShadow: text.trim() ? '0 2px 8px rgba(24, 119, 242, 0.4)' : 'none',
-                                opacity: text.trim() ? 1 : 0.5
-                            },
-                            onMouseEnter: (e)=>{
-                                if (text.trim()) e.currentTarget.style.transform = 'scale(1.05)';
-                            },
-                            onMouseLeave: (e)=>{
-                                e.currentTarget.style.transform = 'scale(1)';
-                            },
-                            children: sending ? '...' : '➤'
-                        }, void 0, false, {
-                            fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                            lineNumber: 445,
-                            columnNumber: 21
+                            lineNumber: 598,
+                            columnNumber: 25
                         }, this)
-                    ]
-                }, void 0, true, {
-                    fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                    lineNumber: 424,
-                    columnNumber: 17
-                }, this)
-            }, void 0, false, {
+                    }, void 0, false, {
+                        fileName: "[project]/app/groups/[id]/chat/page.jsx",
+                        lineNumber: 597,
+                        columnNumber: 21
+                    }, this)
+                ]
+            }, void 0, true, {
                 fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                lineNumber: 417,
-                columnNumber: 13
-            }, this),
-            promoteTarget && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$PromoteEventModal$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                message: promoteTarget,
-                groupId: groupId,
-                onClose: ()=>setPromoteTarget(null),
-                onPromoted: (event)=>{
-                    setMessages((prev)=>prev.map((m)=>m._id === promoteTarget._id ? {
-                                ...m,
-                                promotedToEvent: event
-                            } : m));
-                    setPromoteTarget(null);
-                }
-            }, void 0, false, {
-                fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                lineNumber: 475,
+                lineNumber: 576,
                 columnNumber: 17
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("style", {
-                children: `
-                .chat-msg-group:hover .chat-actions { opacity: 1 !important; }
-            `
-            }, void 0, false, {
-                fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                lineNumber: 489,
-                columnNumber: 13
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/groups/[id]/chat/page.jsx",
-        lineNumber: 117,
+        lineNumber: 123,
         columnNumber: 9
     }, this);
 }
-_s(ChatPage, "EmJP65rwZR1jz7TQycTWDmqe+p8=", false, function() {
+_s(ChatPage, "MBZQE5SqKAuLaPOsYvLXFFkYleI=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$useAuth$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useAuth"],
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useParams"],
@@ -1242,6 +1491,16 @@ function ThreadPanel({ messageId, replies, onReply, currentUserId }) {
     _s1();
     const [replyText, setReplyText] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('');
     const [sending, setSending] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const threadBottomRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "ThreadPanel.useEffect": ()=>{
+            threadBottomRef.current?.scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+    }["ThreadPanel.useEffect"], [
+        replies
+    ]);
     const handleReply = async (e)=>{
         e.preventDefault();
         if (!replyText.trim()) return;
@@ -1252,49 +1511,39 @@ function ThreadPanel({ messageId, replies, onReply, currentUserId }) {
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         style: {
-            marginLeft: '2.5rem',
-            marginTop: '0.5rem',
-            marginBottom: '1rem',
-            padding: '1rem',
-            background: '#1c1e22',
-            borderRadius: '12px',
-            borderLeft: '3px solid #1877f2',
-            boxShadow: '0 2px 8px rgba(0,0,0,0.3)'
+            display: 'flex',
+            flexDirection: 'column',
+            height: '100%'
         },
         children: [
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                style: {
-                    margin: '0 0 0.875rem',
-                    fontSize: '0.75rem',
-                    color: '#8a8d91',
-                    fontWeight: '700',
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.05em'
-                },
-                children: "💬 Thread"
-            }, void 0, false, {
-                fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                lineNumber: 521,
-                columnNumber: 13
-            }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 style: {
-                    marginBottom: '0.875rem',
-                    maxHeight: '200px',
+                    flex: 1,
+                    padding: '1rem',
                     overflowY: 'auto'
                 },
                 children: [
-                    replies.length === 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                    replies.length === 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         style: {
-                            fontSize: '0.8125rem',
-                            color: '#8a8d91',
-                            fontStyle: 'italic',
-                            margin: 0
+                            textAlign: 'center',
+                            paddingTop: '2rem'
                         },
-                        children: "No replies yet. Start the thread!"
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                            style: {
+                                fontSize: '0.8125rem',
+                                color: '#8a8d91',
+                                fontStyle: 'italic',
+                                margin: 0
+                            },
+                            children: "No replies yet. Start the thread!"
+                        }, void 0, false, {
+                            fileName: "[project]/app/groups/[id]/chat/page.jsx",
+                            lineNumber: 639,
+                            columnNumber: 25
+                        }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                        lineNumber: 534,
+                        lineNumber: 638,
                         columnNumber: 21
                     }, this),
                     replies.map((r)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1302,10 +1551,7 @@ function ThreadPanel({ messageId, replies, onReply, currentUserId }) {
                                 display: 'flex',
                                 gap: '0.625rem',
                                 alignItems: 'flex-start',
-                                marginBottom: '0.75rem',
-                                padding: '0.625rem',
-                                background: '#2a2f38',
-                                borderRadius: '8px'
+                                marginBottom: '1rem'
                             },
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1325,7 +1571,7 @@ function ThreadPanel({ messageId, replies, onReply, currentUserId }) {
                                     children: r.userId?.name?.[0]?.toUpperCase() || '?'
                                 }, void 0, false, {
                                     fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                                    lineNumber: 548,
+                                    lineNumber: 651,
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1345,105 +1591,124 @@ function ThreadPanel({ messageId, replies, onReply, currentUserId }) {
                                             children: r.userId?.name
                                         }, void 0, false, {
                                             fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                                            lineNumber: 564,
+                                            lineNumber: 667,
                                             columnNumber: 29
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                             style: {
                                                 fontSize: '0.875rem',
                                                 color: '#e4e6eb',
-                                                wordBreak: 'break-word'
+                                                wordBreak: 'break-word',
+                                                lineHeight: '1.4'
                                             },
                                             children: r.text
                                         }, void 0, false, {
                                             fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                                            lineNumber: 573,
+                                            lineNumber: 676,
                                             columnNumber: 29
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                                    lineNumber: 563,
+                                    lineNumber: 666,
                                     columnNumber: 25
                                 }, this)
                             ]
                         }, r._id, true, {
                             fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                            lineNumber: 539,
+                            lineNumber: 645,
                             columnNumber: 21
-                        }, this))
-                ]
-            }, void 0, true, {
-                fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                lineNumber: 532,
-                columnNumber: 13
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
-                onSubmit: handleReply,
-                style: {
-                    display: 'flex',
-                    gap: '0.5rem'
-                },
-                children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
-                        type: "text",
-                        placeholder: "Reply in thread...",
-                        value: replyText,
-                        onChange: (e)=>setReplyText(e.target.value),
-                        style: {
-                            flex: 1,
-                            margin: 0,
-                            fontSize: '0.875rem',
-                            padding: '0.625rem 0.875rem',
-                            borderRadius: '20px',
-                            background: '#2a2f38',
-                            border: '1px solid #3a3f48',
-                            color: '#e4e6eb',
-                            outline: 'none'
-                        }
+                        }, this)),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        ref: threadBottomRef
                     }, void 0, false, {
                         fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                        lineNumber: 586,
-                        columnNumber: 17
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                        type: "submit",
-                        disabled: sending || !replyText.trim(),
-                        style: {
-                            width: '36px',
-                            height: '36px',
-                            padding: 0,
-                            borderRadius: '50%',
-                            fontSize: '1rem',
-                            background: replyText.trim() ? 'linear-gradient(135deg, #1877f2 0%, #0d5dbf 100%)' : '#2a2f38',
-                            color: '#fff',
-                            border: 'none',
-                            cursor: replyText.trim() ? 'pointer' : 'not-allowed',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            opacity: replyText.trim() ? 1 : 0.5
-                        },
-                        children: sending ? '...' : '➤'
-                    }, void 0, false, {
-                        fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                        lineNumber: 603,
+                        lineNumber: 687,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/groups/[id]/chat/page.jsx",
-                lineNumber: 585,
+                lineNumber: 636,
+                columnNumber: 13
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                style: {
+                    padding: '1rem',
+                    borderTop: '1px solid #2a2f38',
+                    background: '#1c1e22'
+                },
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
+                    onSubmit: handleReply,
+                    style: {
+                        display: 'flex',
+                        gap: '0.5rem'
+                    },
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                            type: "text",
+                            placeholder: "Reply in thread...",
+                            value: replyText,
+                            onChange: (e)=>setReplyText(e.target.value),
+                            style: {
+                                flex: 1,
+                                margin: 0,
+                                fontSize: '0.875rem',
+                                padding: '0.625rem 0.875rem',
+                                borderRadius: '20px',
+                                background: '#2a2f38',
+                                border: '1px solid #3a3f48',
+                                color: '#e4e6eb',
+                                outline: 'none'
+                            }
+                        }, void 0, false, {
+                            fileName: "[project]/app/groups/[id]/chat/page.jsx",
+                            lineNumber: 696,
+                            columnNumber: 21
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                            type: "submit",
+                            disabled: sending || !replyText.trim(),
+                            style: {
+                                width: '36px',
+                                height: '36px',
+                                padding: 0,
+                                borderRadius: '50%',
+                                fontSize: '1rem',
+                                background: replyText.trim() ? 'linear-gradient(135deg, #1877f2 0%, #0d5dbf 100%)' : '#2a2f38',
+                                color: '#fff',
+                                border: 'none',
+                                cursor: replyText.trim() ? 'pointer' : 'not-allowed',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                opacity: replyText.trim() ? 1 : 0.5
+                            },
+                            children: "➤"
+                        }, void 0, false, {
+                            fileName: "[project]/app/groups/[id]/chat/page.jsx",
+                            lineNumber: 713,
+                            columnNumber: 21
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/app/groups/[id]/chat/page.jsx",
+                    lineNumber: 695,
+                    columnNumber: 17
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/app/groups/[id]/chat/page.jsx",
+                lineNumber: 690,
                 columnNumber: 13
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/groups/[id]/chat/page.jsx",
-        lineNumber: 511,
+        lineNumber: 631,
         columnNumber: 9
     }, this);
 }
-_s1(ThreadPanel, "KZq6VU1pCy9g5spuWNcWUc3pYu4=");
+_s1(ThreadPanel, "HvXIv2GjBq0pctcU8j1Qu/6D2hI=");
 _c1 = ThreadPanel;
 var _c, _c1;
 __turbopack_context__.k.register(_c, "ChatPage");

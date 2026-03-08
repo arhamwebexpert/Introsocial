@@ -2,5 +2,5 @@
   "version": 3,
   "sources": [],
   "sections": [
-    {"offset": {"line": 17, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":""}}]
+    {"offset": {"line": 18, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/arham/Desktop/introsocial/app/groups/%5Bid%5D/page.jsx"],"sourcesContent":["// app/groups/[id]/page.jsx\r\nimport { redirect } from 'next/navigation';\r\n\r\nexport default async function GroupRedirect({ params }) {\r\n    const { id } = await params;\r\n    redirect(`/groups/${id}/chat`);\r\n}"],"names":[],"mappings":";;;;AAAA,2BAA2B;AAC3B;AAAA;;AAEe,eAAe,cAAc,EAAE,MAAM,EAAE;IAClD,MAAM,EAAE,EAAE,EAAE,GAAG,MAAM;IACrB,IAAA,iMAAQ,EAAC,CAAC,QAAQ,EAAE,GAAG,KAAK,CAAC;AACjC"}}]
 }

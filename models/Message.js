@@ -7,8 +7,11 @@ const MessageSchema = new mongoose.Schema(
         userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
         text: { type: String, required: true, trim: true },
 
-        // If this message is a reply, it belongs to a parent thread
+        // If this message is a thread reply (Slack style)
         parentId: { type: mongoose.Schema.Types.ObjectId, ref: 'Message', default: null },
+
+        // If this message is an inline reply/quote (WhatsApp style)
+        replyTo: { type: mongoose.Schema.Types.ObjectId, ref: 'Message', default: null },
 
         // Replies are embedded as references (we query them separately)
         replyCount: { type: Number, default: 0 },
@@ -18,5 +21,9 @@ const MessageSchema = new mongoose.Schema(
     },
     { timestamps: true }
 );
+// Force schema compilation in Next.js dev mode
+if (mongoose.models.Message) {
+    delete mongoose.models.Message;
+}
 
-export default mongoose.models.Message || mongoose.model('Message', MessageSchema);
+export default mongoose.model('Message', MessageSchema);

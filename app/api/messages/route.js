@@ -28,6 +28,11 @@ export async function GET(request) {
         // Only fetch root messages (parentId is null)
         const messages = await Message.find({ groupId, parentId: null })
             .populate('userId', 'name email')
+            .populate({
+                path: 'replyTo',
+                select: 'text userId',
+                populate: { path: 'userId', select: 'name' }
+            })
             .populate('promotedToEvent')
             .sort({ createdAt: 1 }); // oldest first for chat feel
 
@@ -45,7 +50,7 @@ export async function POST(request) {
         const user = await getCurrentUser();
         if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
-        const { groupId, text } = await request.json();
+        const { groupId, text, replyTo } = await request.json();
         if (!groupId || !text?.trim()) {
             return NextResponse.json({ error: 'groupId and text are required' }, { status: 400 });
         }
@@ -56,8 +61,18 @@ export async function POST(request) {
         const isMember = group.members.some((m) => m.toString() === user.userId);
         if (!isMember) return NextResponse.json({ error: 'Access denied' }, { status: 403 });
 
-        const message = await Message.create({ groupId, userId: user.userId, text: text.trim() });
+        const messageData = { groupId, userId: user.userId, text: text.trim() };
+        if (replyTo) messageData.replyTo = replyTo;
+
+        const message = await Message.create(messageData);
         await message.populate('userId', 'name email');
+        if (replyTo) {
+            await message.populate({
+                path: 'replyTo',
+                select: 'text userId',
+                populate: { path: 'userId', select: 'name' }
+            });
+        }
 
         return NextResponse.json({ message }, { status: 201 });
     } catch (err) {

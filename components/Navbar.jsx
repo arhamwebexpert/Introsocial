@@ -51,7 +51,7 @@ export default function Navbar() {
 
     const isHome = pathname === '/dashboard';
     const isGroups = pathname?.startsWith('/groups');
-    const isMoments = pathname?.startsWith('/moments');
+    const isFeed = pathname?.startsWith('/newsfeed');
     const isInGroup = pathname?.match(/^\/groups\/[^/]+/); // Check if inside a specific group
 
     const initials = user?.name
@@ -151,23 +151,23 @@ export default function Navbar() {
                         >
                             <GroupsIcon filled={isGroups} />
                         </Link>
-                        <Link href="/moments" style={{
+                        <Link href="/newsfeed" title="News Feed" style={{
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
                             width: '112px',
                             height: '44px',
                             borderRadius: 'var(--fb-radius)',
-                            color: isMoments ? 'var(--fb-blue)' : 'var(--fb-text-secondary)',
+                            color: isFeed ? 'var(--fb-blue)' : 'var(--fb-text-secondary)',
                             background: 'transparent',
                             textDecoration: 'none',
-                            borderBottom: isMoments ? '3px solid var(--fb-blue)' : '3px solid transparent',
+                            borderBottom: isFeed ? '3px solid var(--fb-blue)' : '3px solid transparent',
                             transition: 'background 0.15s, color 0.15s',
                         }}
-                            onMouseEnter={e => { if (!isMoments) e.currentTarget.style.background = 'var(--fb-hover)'; }}
+                            onMouseEnter={e => { if (!isFeed) e.currentTarget.style.background = 'var(--fb-hover)'; }}
                             onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
                         >
-                            <MomentsIcon filled={isMoments} />
+                            <MomentsIcon filled={isFeed} />
                         </Link>
                     </div>
                 )}
@@ -294,19 +294,19 @@ export default function Navbar() {
                         <GroupsIcon filled={isGroups} />
                     </Link>
 
-                    <Link href="/moments" style={{
+                    <Link href="/newsfeed" title="News Feed" style={{
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
                         justifyContent: 'center',
                         flex: 1,
                         height: '100%',
-                        color: isMoments ? 'var(--fb-blue)' : 'var(--fb-text-secondary)',
+                        color: isFeed ? 'var(--fb-blue)' : 'var(--fb-text-secondary)',
                         textDecoration: 'none',
                         padding: '0.25rem',
-                        borderTop: isMoments ? '2px solid var(--fb-blue)' : '2px solid transparent',
+                        borderTop: isFeed ? '2px solid var(--fb-blue)' : '2px solid transparent',
                     }}>
-                        <MomentsIcon filled={isMoments} />
+                        <MomentsIcon filled={isFeed} />
                     </Link>
 
                     {/* User avatar */}

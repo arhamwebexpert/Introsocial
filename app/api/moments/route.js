@@ -3,9 +3,10 @@ import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/db';
 import Moment from '@/models/Moment';
 import User from '@/models/User';
+import Group from '@/models/Group';
 import { getCurrentUser } from '@/lib/auth';
 
-// GET /api/moments?groupId=xxx — fetch moments for a group
+// GET /api/moments?groupId=xxx — fetch moments for a group (or across all groups if no ID)
 export async function GET(request) {
     try {
         await dbConnect();
@@ -15,12 +16,19 @@ export async function GET(request) {
         const { searchParams } = new URL(request.url);
         const groupId = searchParams.get('groupId');
 
-        if (!groupId) {
-            return NextResponse.json({ error: 'groupId is required' }, { status: 400 });
+        let query = {};
+        if (groupId) {
+            query.groupId = groupId;
+        } else {
+            // Find all groups where the user is a member
+            const userGroups = await Group.find({ members: user.userId }).select('_id');
+            const groupIds = userGroups.map(g => g._id);
+            query.groupId = { $in: groupIds };
         }
 
-        const moments = await Moment.find({ groupId })
+        const moments = await Moment.find(query)
             .populate('userId', 'name email')
+            .populate('groupId', 'name') // Helpful for displaying the group name in the feed
             .sort({ createdAt: -1 });
 
         return NextResponse.json({ moments });

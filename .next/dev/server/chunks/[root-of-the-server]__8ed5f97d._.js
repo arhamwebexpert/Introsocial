@@ -102,8 +102,14 @@ const MessageSchema = new __TURBOPACK__imported__module__$5b$externals$5d2f$mong
         required: true,
         trim: true
     },
-    // If this message is a reply, it belongs to a parent thread
+    // If this message is a thread reply (Slack style)
     parentId: {
+        type: __TURBOPACK__imported__module__$5b$externals$5d2f$mongoose__$5b$external$5d$__$28$mongoose$2c$__cjs$2c$__$5b$project$5d2f$node_modules$2f$mongoose$29$__["default"].Schema.Types.ObjectId,
+        ref: 'Message',
+        default: null
+    },
+    // If this message is an inline reply/quote (WhatsApp style)
+    replyTo: {
         type: __TURBOPACK__imported__module__$5b$externals$5d2f$mongoose__$5b$external$5d$__$28$mongoose$2c$__cjs$2c$__$5b$project$5d2f$node_modules$2f$mongoose$29$__["default"].Schema.Types.ObjectId,
         ref: 'Message',
         default: null
@@ -122,7 +128,11 @@ const MessageSchema = new __TURBOPACK__imported__module__$5b$externals$5d2f$mong
 }, {
     timestamps: true
 });
-const __TURBOPACK__default__export__ = __TURBOPACK__imported__module__$5b$externals$5d2f$mongoose__$5b$external$5d$__$28$mongoose$2c$__cjs$2c$__$5b$project$5d2f$node_modules$2f$mongoose$29$__["default"].models.Message || __TURBOPACK__imported__module__$5b$externals$5d2f$mongoose__$5b$external$5d$__$28$mongoose$2c$__cjs$2c$__$5b$project$5d2f$node_modules$2f$mongoose$29$__["default"].model('Message', MessageSchema);
+// Force schema compilation in Next.js dev mode
+if (__TURBOPACK__imported__module__$5b$externals$5d2f$mongoose__$5b$external$5d$__$28$mongoose$2c$__cjs$2c$__$5b$project$5d2f$node_modules$2f$mongoose$29$__["default"].models.Message) {
+    delete __TURBOPACK__imported__module__$5b$externals$5d2f$mongoose__$5b$external$5d$__$28$mongoose$2c$__cjs$2c$__$5b$project$5d2f$node_modules$2f$mongoose$29$__["default"].models.Message;
+}
+const __TURBOPACK__default__export__ = __TURBOPACK__imported__module__$5b$externals$5d2f$mongoose__$5b$external$5d$__$28$mongoose$2c$__cjs$2c$__$5b$project$5d2f$node_modules$2f$mongoose$29$__["default"].model('Message', MessageSchema);
 }),
 "[externals]/crypto [external] (crypto, cjs)", ((__turbopack_context__, module, exports) => {
 
