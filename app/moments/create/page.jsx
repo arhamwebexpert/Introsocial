@@ -1,7 +1,7 @@
 // app/moments/create/page.jsx
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '@/lib/useAuth';
@@ -19,7 +19,7 @@ const CameraIcon = () => (
     </svg>
 );
 
-export default function CreateMomentPage() {
+function CreateMomentContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const { user, loading } = useAuth();
@@ -290,5 +290,27 @@ export default function CreateMomentPage() {
                 </form>
             </div>
         </div>
+    );
+}
+
+export default function CreateMomentPage() {
+    return (
+        <Suspense fallback={
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '60vh' }}>
+                <div style={{ textAlign: 'center' }}>
+                    <div style={{
+                        width: '40px', height: '40px',
+                        border: '3px solid var(--fb-blue)',
+                        borderTopColor: 'transparent',
+                        borderRadius: '50%',
+                        animation: 'spin 0.8s linear infinite',
+                        margin: '0 auto 1rem',
+                    }} />
+                    <p style={{ color: 'var(--fb-text-secondary)', margin: 0 }}>Loading…</p>
+                </div>
+            </div>
+        }>
+            <CreateMomentContent />
+        </Suspense>
     );
 }
