@@ -1,1 +1,12 @@
-{}
+{
+  "/api/auth/me/route": "app/api/auth/me/route.js",
+  "/api/groups/route": "app/api/groups/route.js",
+  "/api/messages/route": "app/api/messages/route.js",
+  "/api/moments/route": "app/api/moments/route.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/groups/[id]/chat/page": "app/groups/[id]/chat/page.js",
+  "/groups/[id]/page": "app/groups/[id]/page.js",
+  "/groups/create/page": "app/groups/create/page.js",
+  "/newsfeed/page": "app/newsfeed/page.js",
+  "/page": "app/page.js"
+}
